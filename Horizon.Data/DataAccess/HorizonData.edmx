@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HorizonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aircraft">
+          <Key>
+            <PropertyRef Name="aircraft_id" />
+          </Key>
+          <Property Name="aircraft_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="producer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="model_num" Type="int" Nullable="false" />
+          <Property Name="seat_actual" Type="int" Nullable="false" />
+          <Property Name="seat_max" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="booking_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="passenger_id" Type="int" Nullable="false" />
+          <Property Name="flight_id" Type="int" Nullable="false" />
+          <Property Name="seatclass_id" Type="int" Nullable="false" />
+          <Property Name="seat_number" Type="int" Nullable="false" />
+          <Property Name="baggage_num" Type="int" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingStatus">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="flight_id" />
+          </Key>
+          <Property Name="flight_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arrival_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="arrival_date" Type="date" Nullable="false" />
+          <Property Name="depart_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="depart_date" Type="date" Nullable="false" />
+          <Property Name="destination" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="departure" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aircraft_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="passenger_id" />
+          </Key>
+          <Property Name="passenger_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="middle" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="birth_date" Type="date" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tel_num" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="booking_id" Type="int" Nullable="false" />
+          <Property Name="pay_amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="pay_date" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeatClass">
+          <Key>
+            <PropertyRef Name="seatclass_id" />
+          </Key>
+          <Property Name="seatclass_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pricingTier" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Booking_BookingStatus">
+          <End Role="BookingStatus" Type="Self.BookingStatus" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingStatus">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="flight_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="flight_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="passenger_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="passenger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_SeatClass">
+          <End Role="SeatClass" Type="Self.SeatClass" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeatClass">
+              <PropertyRef Name="seatclass_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="seatclass_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Aircraft">
+          <End Role="Aircraft" Type="Self.Aircraft" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aircraft">
+              <PropertyRef Name="aircraft_id" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="aircraft_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Booking">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="booking_id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="booking_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HorizonModelStoreContainer">
+          <EntitySet Name="Aircraft" EntityType="Self.Aircraft" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingStatus" EntityType="Self.BookingStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeatClass" EntityType="Self.SeatClass" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Booking_BookingStatus" Association="Self.FK_Booking_BookingStatus">
+            <End Role="BookingStatus" EntitySet="BookingStatus" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Flight" Association="Self.FK_Booking_Flight">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Passenger" Association="Self.FK_Booking_Passenger">
+            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_SeatClass" Association="Self.FK_Booking_SeatClass">
+            <End Role="SeatClass" EntitySet="SeatClass" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Aircraft" Association="Self.FK_Flight_Aircraft">
+            <End Role="Aircraft" EntitySet="Aircraft" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Booking" Association="Self.FK_Payment_Booking">
+            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HorizonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aircraft">
+          <Key>
+            <PropertyRef Name="aircraft_id" />
+          </Key>
+          <Property Name="aircraft_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="producer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="model_num" Type="Int32" Nullable="false" />
+          <Property Name="seat_actual" Type="Int32" Nullable="false" />
+          <Property Name="seat_max" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flights" Relationship="Self.FK_Flight_Aircraft" FromRole="Aircraft" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="booking_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="passenger_id" Type="Int32" Nullable="false" />
+          <Property Name="flight_id" Type="Int32" Nullable="false" />
+          <Property Name="seatclass_id" Type="Int32" Nullable="false" />
+          <Property Name="seat_number" Type="Int32" Nullable="false" />
+          <Property Name="baggage_num" Type="Int32" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BookingStatu" Relationship="Self.FK_Booking_BookingStatus" FromRole="Booking" ToRole="BookingStatus" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Booking_Flight" FromRole="Booking" ToRole="Flight" />
+          <NavigationProperty Name="Passenger" Relationship="Self.FK_Booking_Passenger" FromRole="Booking" ToRole="Passenger" />
+          <NavigationProperty Name="SeatClass" Relationship="Self.FK_Booking_SeatClass" FromRole="Booking" ToRole="SeatClass" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Booking" FromRole="Booking" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="BookingStatu">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_BookingStatus" FromRole="BookingStatus" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="flight_id" />
+          </Key>
+          <Property Name="flight_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arrival_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="arrival_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="depart_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="depart_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="departure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aircraft_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aircraft" Relationship="Self.FK_Flight_Aircraft" FromRole="Flight" ToRole="Aircraft" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Flight" FromRole="Flight" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="passenger_id" />
+          </Key>
+          <Property Name="passenger_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tel_num" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Passenger" FromRole="Passenger" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="booking_id" Type="Int32" Nullable="false" />
+          <Property Name="pay_amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="pay_date" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Payment_Booking" FromRole="Payment" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="SeatClass">
+          <Key>
+            <PropertyRef Name="seatclass_id" />
+          </Key>
+          <Property Name="seatclass_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pricingTier" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_SeatClass" FromRole="SeatClass" ToRole="Booking" />
+        </EntityType>
+        <Association Name="FK_Flight_Aircraft">
+          <End Role="Aircraft" Type="Self.Aircraft" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aircraft">
+              <PropertyRef Name="aircraft_id" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="aircraft_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_BookingStatus">
+          <End Role="BookingStatus" Type="Self.BookingStatu" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingStatus">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="flight_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="flight_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="passenger_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="passenger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_SeatClass">
+          <End Role="SeatClass" Type="Self.SeatClass" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeatClass">
+              <PropertyRef Name="seatclass_id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="seatclass_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Booking">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="booking_id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="booking_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HorizonData" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aircraft" EntityType="Self.Aircraft" />
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="BookingStatus" EntityType="Self.BookingStatu" />
+          <EntitySet Name="Flights" EntityType="Self.Flight" />
+          <EntitySet Name="Passengers" EntityType="Self.Passenger" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="SeatClasses" EntityType="Self.SeatClass" />
+          <AssociationSet Name="FK_Flight_Aircraft" Association="Self.FK_Flight_Aircraft">
+            <End Role="Aircraft" EntitySet="Aircraft" />
+            <End Role="Flight" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_BookingStatus" Association="Self.FK_Booking_BookingStatus">
+            <End Role="BookingStatus" EntitySet="BookingStatus" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Flight" Association="Self.FK_Booking_Flight">
+            <End Role="Flight" EntitySet="Flights" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Passenger" Association="Self.FK_Booking_Passenger">
+            <End Role="Passenger" EntitySet="Passengers" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_SeatClass" Association="Self.FK_Booking_SeatClass">
+            <End Role="SeatClass" EntitySet="SeatClasses" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Booking" Association="Self.FK_Payment_Booking">
+            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HorizonModelStoreContainer" CdmEntityContainer="HorizonData">
+          <EntitySetMapping Name="Aircraft">
+            <EntityTypeMapping TypeName="HorizonModel.Aircraft">
+              <MappingFragment StoreEntitySet="Aircraft">
+                <ScalarProperty Name="aircraft_id" ColumnName="aircraft_id" />
+                <ScalarProperty Name="producer" ColumnName="producer" />
+                <ScalarProperty Name="model_num" ColumnName="model_num" />
+                <ScalarProperty Name="seat_actual" ColumnName="seat_actual" />
+                <ScalarProperty Name="seat_max" ColumnName="seat_max" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="HorizonModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+                <ScalarProperty Name="passenger_id" ColumnName="passenger_id" />
+                <ScalarProperty Name="flight_id" ColumnName="flight_id" />
+                <ScalarProperty Name="seatclass_id" ColumnName="seatclass_id" />
+                <ScalarProperty Name="seat_number" ColumnName="seat_number" />
+                <ScalarProperty Name="baggage_num" ColumnName="baggage_num" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingStatus">
+            <EntityTypeMapping TypeName="HorizonModel.BookingStatu">
+              <MappingFragment StoreEntitySet="BookingStatus">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flights">
+            <EntityTypeMapping TypeName="HorizonModel.Flight">
+              <MappingFragment StoreEntitySet="Flight">
+                <ScalarProperty Name="flight_id" ColumnName="flight_id" />
+                <ScalarProperty Name="arrival_time" ColumnName="arrival_time" />
+                <ScalarProperty Name="arrival_date" ColumnName="arrival_date" />
+                <ScalarProperty Name="depart_time" ColumnName="depart_time" />
+                <ScalarProperty Name="depart_date" ColumnName="depart_date" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="departure" ColumnName="departure" />
+                <ScalarProperty Name="aircraft_id" ColumnName="aircraft_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="HorizonModel.Passenger">
+              <MappingFragment StoreEntitySet="Passenger">
+                <ScalarProperty Name="passenger_id" ColumnName="passenger_id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="middle" ColumnName="middle" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="tel_num" ColumnName="tel_num" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="HorizonModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+                <ScalarProperty Name="pay_amount" ColumnName="pay_amount" />
+                <ScalarProperty Name="pay_date" ColumnName="pay_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeatClasses">
+            <EntityTypeMapping TypeName="HorizonModel.SeatClass">
+              <MappingFragment StoreEntitySet="SeatClass">
+                <ScalarProperty Name="seatclass_id" ColumnName="seatclass_id" />
+                <ScalarProperty Name="desc" ColumnName="desc" />
+                <ScalarProperty Name="pricingTier" ColumnName="pricingTier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

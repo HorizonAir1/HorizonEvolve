@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c23e0c132ba945f5bd4619a738afd40d" Name="Diagram1">
+        <EntityTypeShape EntityType="HorizonModel.Aircraft" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorizonModel.Booking" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorizonModel.BookingStatu" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorizonModel.Flight" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorizonModel.Passenger" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorizonModel.Payment" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorizonModel.SeatClass" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="HorizonModel.FK_Flight_Aircraft" ManuallyRouted="false" />
+        <AssociationConnector Association="HorizonModel.FK_Booking_BookingStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="HorizonModel.FK_Booking_Flight" ManuallyRouted="false" />
+        <AssociationConnector Association="HorizonModel.FK_Booking_Passenger" ManuallyRouted="false" />
+        <AssociationConnector Association="HorizonModel.FK_Booking_SeatClass" ManuallyRouted="false" />
+        <AssociationConnector Association="HorizonModel.FK_Payment_Booking" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
