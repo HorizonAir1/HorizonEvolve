@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Models
+namespace Logic
 {
     public class Flight
     {
+        public static bool GetAllSeats(int seats, int )
+        {
+
+        }
     }
 }
