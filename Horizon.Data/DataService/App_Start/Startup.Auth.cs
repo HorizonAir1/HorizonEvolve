@@ -22,6 +22,15 @@ namespace DataService
     // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
     public void ConfigureAuth(IAppBuilder app)
     {
+      var opt = new CookieAuthenticationOptions()
+      {
+        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+        CookieHttpOnly = true,
+        CookieName = "data-logic-token",
+        LoginPath = new PathString("/DataService/Account/login")
+      };
+
+      app.UseCookieAuthentication(opt);
       //// Configure the db context and user manager to use a single instance per request
       //app.CreatePerOwinContext(ApplicationDbContext.Create);
       //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -46,17 +55,7 @@ namespace DataService
       //// Enable the application to use bearer tokens to authenticate users
       //app.UseOAuthBearerTokens(OAuthOptions);
 
-      var opt = new CookieAuthenticationOptions()
-      {
-        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-        CookieHttpOnly = true,
-        CookieName = "logic-token",
-        LoginPath = new PathString("/DataService/Account/login")
-      };
-
-      app.UseCookieAuthentication(opt);
-
-      // Uncomment the following lines to enable logging in with third party login providers
+      //Uncomment the following lines to enable logging in with third party login providers
       //app.UseMicrosoftAccountAuthentication(
       //    clientId: "",
       //    clientSecret: "");
@@ -71,8 +70,8 @@ namespace DataService
 
       //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
       //{
-      //    ClientId = "",
-      //    ClientSecret = ""
+      //  ClientId = "",
+      //  ClientSecret = ""
       //});
     }
   }
