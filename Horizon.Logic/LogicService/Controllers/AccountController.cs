@@ -35,25 +35,25 @@ namespace LogicService.Controllers
       return new string[] { "value1", "value2" };
     }
 
-    // GET: api/Account/5
-    public string Get(int id)
-    {
-      return "value";
-    }
+    //// GET: api/Account/5
+    //public string Get(int id)
+    //{
+    //  return "value";
+    //}
 
     // POST: api/Account
     public void Post([FromBody]string value)
     {
     }
 
-    // PUT: api/Account/5
-    public void Put(int id, [FromBody]string value)
-    {
-    }
+    //// PUT: api/Account/5
+    //public void Put(int id, [FromBody]string value)
+    //{
+    //}
 
-    // DELETE: api/Account/5
-    public void Delete(int id)
-    {
-    }
+    //// DELETE: api/Account/5
+    //public void Delete(int id)
+    //{
+    //}
   }
 }
