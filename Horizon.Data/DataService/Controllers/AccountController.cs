@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataService.Models;
+using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
