@@ -37,7 +37,7 @@ namespace DataService.Controllers
       var user = Request.GetOwinContext().Authentication.User;
       if (user.HasClaim("username", ConfigurationManager.AppSettings["user"]))
         return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Signed In");
-      return Request.CreateResponse<string>(HttpStatusCode.Forbidden, "No access");
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "No access");
     }
 
     //// GET: api/Account/5
@@ -63,7 +63,7 @@ namespace DataService.Controllers
       }
 
 
-      return Request.CreateResponse<string>(HttpStatusCode.Forbidden, "No access");
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "No access");
     }
 
   }
