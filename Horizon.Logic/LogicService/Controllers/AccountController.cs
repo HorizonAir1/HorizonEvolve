@@ -36,6 +36,9 @@ namespace LogicService.Controllers
     // GET: api/Account
     public HttpResponseMessage Get()
     {
+      var user = Request.GetOwinContext().Authentication.User;
+      if (user.HasClaim("username", ConfigurationManager.AppSettings["user"]))
+        return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Signed In");
       return Request.CreateResponse<string>(HttpStatusCode.Forbidden, "No access");
     }
 
