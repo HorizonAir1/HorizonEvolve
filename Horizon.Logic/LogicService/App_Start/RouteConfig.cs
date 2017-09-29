@@ -15,8 +15,8 @@ namespace LogicService
 
       routes.MapRoute(
           name: "Default",
-          url: "LogicService/{controller}/{action}/{id}",
-          defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
+          url: "{controller}/{action}/{id}",
+          defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
       );
     }
   }

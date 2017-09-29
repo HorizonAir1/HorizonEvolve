@@ -1,21 +1,26 @@
-﻿using System;
+﻿using LogicService.Models;
+using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Web;
 using System.Web.Http;
+
 
 namespace LogicService.Controllers
 {
+  [AllowAnonymous]
   public class AccountController : ApiController
   {
-    private static Dictionary<string, ClaimsPrincipal> _UserStore = new Dictionary<string, ClaimsPrincipal>();
+    private static Dictionary<string, ClaimsIdentity> _UserStore = new Dictionary<string, ClaimsIdentity>();
 
     public AccountController() : base()
     {
-      if (_UserStore[ConfigurationManager.AppSettings["user"]] == null)
+      if (!_UserStore.ContainsKey(ConfigurationManager.AppSettings["user"]))
       {
         var claims = new List<Claim>()
         {
@@ -23,16 +28,15 @@ namespace LogicService.Controllers
           new Claim("username", ConfigurationManager.AppSettings["user"]),
           new Claim("password", ConfigurationManager.AppSettings["pass"])
         };
-        var id = new ClaimsIdentity(claims);
-        var user = new ClaimsPrincipal(id);
-        _UserStore.Add(ConfigurationManager.AppSettings["user"], user);
+        var id = new ClaimsIdentity(claims, "ApplicationCookie");
+        _UserStore.Add(ConfigurationManager.AppSettings["user"], id);
       }
     }
-      
+
     // GET: api/Account
-    public IEnumerable<string> Get()
+    public HttpResponseMessage Get()
     {
-      return new string[] { "value1", "value2" };
+      return Request.CreateResponse<string>(HttpStatusCode.Forbidden, "No access");
     }
 
     //// GET: api/Account/5
@@ -42,8 +46,23 @@ namespace LogicService.Controllers
     //}
 
     // POST: api/Account
-    public void Post([FromBody]string value)
+    public HttpResponseMessage Post(UserProfile p)
     {
+      if (ModelState.IsValid && _UserStore.ContainsKey(p.Username))
+      {
+        var auth = Request.GetOwinContext().Authentication;
+        var props = new AuthenticationProperties()
+        {
+          IsPersistent = true,
+          ExpiresUtc = DateTime.UtcNow.AddHours(1)
+        };
+
+        auth.SignIn(props, _UserStore[p.Username]);
+        return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Signed In");
+      }
+
+
+      return Request.CreateResponse<string>(HttpStatusCode.Forbidden, "No access");
     }
 
     //// PUT: api/Account/5

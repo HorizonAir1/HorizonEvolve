@@ -18,7 +18,7 @@ namespace LogicService
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
         CookieHttpOnly = true,
         CookieName = "James-token",
-        LoginPath = new PathString("LogicService/Account")
+        LoginPath = new PathString("/LogicService/Account")
       };
 
       app.UseCookieAuthentication(opt);

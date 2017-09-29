@@ -16,7 +16,7 @@ namespace LogicService
 
       config.Routes.MapHttpRoute(
           name: "DefaultApi",
-          routeTemplate: "DataService/{controller}/{id}",
+          routeTemplate: "LogicService/{controller}/{id}",
           defaults: new { id = RouteParameter.Optional }
       );
     }
