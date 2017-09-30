@@ -20,6 +20,7 @@ namespace LogicService.Controllers
 
         var client = new HttpClient();
         var res = client.GetAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/").GetAwaiter().GetResult();
+        Logout();
         return res;
 
       }
