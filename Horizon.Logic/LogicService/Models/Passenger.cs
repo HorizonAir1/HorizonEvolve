@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LogicService.Models
 {
-  public class NewPassenger
+  public class Passenger
   {
     public string Email { get; set; }
     public string Firstname { get; set; }

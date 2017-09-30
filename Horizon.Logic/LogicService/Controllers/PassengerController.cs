@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LogicService.Models;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,14 +13,23 @@ namespace LogicService.Controllers
   public class PassengerController : ApiController
   {
     // GET: api/Passenger
-    public IEnumerable<string> Get()
+    public HttpResponseMessage Get(Passenger passenger)
     {
-      return new string[] { "value1", "value2" };
+      if (Login())
+      {
+
+        var client = new HttpClient();
+        var res = client.GetAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/").GetAwaiter().GetResult();
+        return res;
+
+      }
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
     }
 
     // GET: api/Passenger/5
     public string Get(int id)
     {
+
       return "value";
     }
 
@@ -35,6 +46,26 @@ namespace LogicService.Controllers
     // DELETE: api/Passenger/5
     public void Delete(int id)
     {
+    }
+
+    private bool Login()
+    {
+      var client = new HttpClient();
+      var res = client.PostAsJsonAsync<UserProfile>(ConfigurationManager.AppSettings["DataUri"] + "Account/", new UserProfile()
+      {
+        Username = ConfigurationManager.AppSettings["DataUser"],
+        Password = ConfigurationManager.AppSettings["DataPass"]
+      }).GetAwaiter().GetResult();
+
+      return res.IsSuccessStatusCode;
+    }
+
+    private bool Logout()
+    {
+      var client = new HttpClient();
+      var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Account/").GetAwaiter().GetResult();
+
+      return res.IsSuccessStatusCode;
     }
   }
 }

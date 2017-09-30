@@ -21,8 +21,6 @@ namespace LogicService
           routeTemplate: "LogicService/{controller}/{id}",
           defaults: new { id = RouteParameter.Optional }
       );
-
-
     }
   }
 }

@@ -38,8 +38,8 @@ namespace LogicService.Controllers
     {
       var user = Request.GetOwinContext().Authentication.User;
       if (user.HasClaim("username", ConfigurationManager.AppSettings["user"]))
-        return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Signed In");
-      return Request.CreateResponse<NewPassenger>(HttpStatusCode.Accepted, new NewPassenger(){ Email = "a@b.com", Firstname = "James" });
+        return Request.CreateResponse<string>(HttpStatusCode.OK, "Signed In");
+      return Request.CreateResponse<string>(HttpStatusCode.OK, "Logged Out");
     }
 
     //// GET: api/Account/5
@@ -61,11 +61,11 @@ namespace LogicService.Controllers
         };
 
         auth.SignIn(props, _UserStore[p.Username]);
-        return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Signed In");
+        return Request.CreateResponse<string>(HttpStatusCode.OK, "Signed In");
       }
 
 
-      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "No access");
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "No Access");
     }
 
     //// PUT: api/Account/5
@@ -79,7 +79,7 @@ namespace LogicService.Controllers
     {
       var req = Request.GetOwinContext().Authentication;
       req.SignOut();
-      return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Logged Out");
+      return Request.CreateResponse<string>(HttpStatusCode.OK, "Logged Out");
     }
   }
 }
