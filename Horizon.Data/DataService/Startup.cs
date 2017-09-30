@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LogicService
+namespace DataService
 {
   public class Startup
   {
@@ -17,8 +17,8 @@ namespace LogicService
       {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
         CookieHttpOnly = true,
-        CookieName = "Logic-token",
-        LoginPath = new PathString("/LogicService/Account")
+        CookieName = "Data-token",
+        LoginPath = new PathString("/DataService/Account")
       };
 
       app.UseCookieAuthentication(opt);

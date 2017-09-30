@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,33 +8,77 @@ using System.Web.Http;
 
 namespace DataService.Controllers
 {
-    public class PassengerController : ApiController
+  [Authorize]
+  public class PassengerController : ApiController
+  {
+    private FacadeHelper fh = FacadeHelper.Instance;
+    // GET: api/Passenger
+    public IEnumerable<string> Get()
     {
-        // GET: api/Passenger
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Passenger/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Passenger
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Passenger/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Passenger/5
-        public void Delete(int id)
-        {
-        }
+      return new string[] { "value1", "value2" };
     }
+
+    // GET: api/Passenger/5
+    public HttpResponseMessage Get(Passenger Passenger)
+    {
+      try
+      {
+        Passenger getPassenger = fh.GetPassenger(Passenger);
+        if (getPassenger != null)
+          return Request.CreateResponse<Passenger>(HttpStatusCode.OK, getPassenger);
+        return Request.CreateResponse<string>(HttpStatusCode.NotFound, "No such Passenger");
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
+      }
+
+    }
+
+    // POST: api/Passenger
+    public HttpResponseMessage Post(Passenger passenger)
+    {
+      try
+      {
+        if (fh.CreatePassenger(passenger))
+          return Request.CreateResponse<string>(HttpStatusCode.OK, "Passenger Created");
+        return Request.CreateResponse<string>(HttpStatusCode.NotFound, "Passenger Create Failed");
+      }
+      catch(Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
+      }
+    }
+
+    // PUT: api/Passenger/5
+    public HttpResponseMessage Put(Passenger passenger)
+    {
+      try
+      {
+        if (fh.UpdatePassenger(passenger))
+          return Request.CreateResponse<string>(HttpStatusCode.OK, "Passenger Updated");
+        return Request.CreateResponse<string>(HttpStatusCode.NotFound, "Passenger Update Failed");
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
+      }
+
+    }
+
+    // DELETE: api/Passenger/5
+    public HttpResponseMessage Delete(Passenger passenger)
+    {
+      try
+      {
+        if (fh.RemovePassenger(passenger))
+          return Request.CreateResponse<string>(HttpStatusCode.OK, "Passenger Created");
+        return Request.CreateResponse<string>(HttpStatusCode.NotFound, "Create Passenger Failed");
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
+      }
+    }
+  }
 }

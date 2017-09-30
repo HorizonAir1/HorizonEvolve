@@ -39,7 +39,7 @@ namespace LogicService.Controllers
       var user = Request.GetOwinContext().Authentication.User;
       if (user.HasClaim("username", ConfigurationManager.AppSettings["user"]))
         return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Signed In");
-      return Request.CreateResponse<string>(HttpStatusCode.Accepted, "Logged Out");
+      return Request.CreateResponse<NewPassenger>(HttpStatusCode.Accepted, new NewPassenger(){ Email = "a@b.com", Firstname = "James" });
     }
 
     //// GET: api/Account/5
@@ -74,6 +74,7 @@ namespace LogicService.Controllers
     //}
 
     // DELETE: api/Account/5
+    [Authorize]
     public HttpResponseMessage Delete(int id)
     {
       var req = Request.GetOwinContext().Authentication;
