@@ -12,11 +12,6 @@ namespace DataService.Controllers
   public class PassengerController : ApiController
   {
     private FacadeHelper fh = FacadeHelper.Instance;
-    // GET: api/Passenger
-    public IEnumerable<string> Get()
-    {
-      return new string[] { "value1", "value2" };
-    }
 
     // GET: api/Passenger/5
     public HttpResponseMessage Get(Passenger Passenger)
