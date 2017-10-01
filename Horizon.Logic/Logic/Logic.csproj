@@ -40,14 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\IUnitOfWork.cs" />
+    <Compile Include="Database\Repositories\IAircraftRepository.cs" />
+    <Compile Include="Database\Repositories\IBookingRepository.cs" />
+    <Compile Include="Database\Repositories\IBookingStatusRepository.cs" />
+    <Compile Include="Database\Repositories\IFlightRepository.cs" />
+    <Compile Include="Database\Repositories\IPassengerRepository.cs" />
+    <Compile Include="Database\Repositories\IPaymentRepository.cs" />
+    <Compile Include="Database\Repositories\IRepository.cs" />
+    <Compile Include="Database\Repositories\ISeatClassRepository.cs" />
+    <Compile Include="Database\Repositories\ISeatingChartRepository.cs" />
     <Compile Include="LogicServices.cs" />
+    <Compile Include="Models\Aircraft.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\BookingStatus.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\SeatClass.cs" />
+    <Compile Include="Models\SeatingChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminServices.cs" />
+    <Compile Include="Services\ClientServices.cs" />
+    <Compile Include="Services\IClientService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
