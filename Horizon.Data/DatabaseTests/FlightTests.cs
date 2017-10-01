@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Database;
 using DataAccess;
+using Database.Models;
 
 namespace Horizon.Logic.Tests
 {
@@ -19,7 +20,7 @@ namespace Horizon.Logic.Tests
       {
         initcount = db.Bookings.Count();
       }
-       Database.Flight.BookPassenger(1, 1, 1, 1, 1);
+       Database.Models.Flight.BookPassenger(1, 1, 1, 1, 1);
 
       int aftercount = 0;
       using (var db = new HorizonData())

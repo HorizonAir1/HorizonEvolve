@@ -7,27 +7,33 @@ using DataAccess;
 
 namespace Database.Models
 {
-    class Seating
+    public class Seating
     {
-        public static void addSeat(int y)
+        public static bool addSeat(int y)
         {
             using (var db = new HorizonData())
             {
                 DataAccess.SeatingChart x = new SeatingChart();
                 db.SeatingCharts.Add(x);
                 db.SaveChanges();
+                return true;
             }
+         
         }
-        public static DataAccess.SeatingChart getSeat(int y)
-        {
-            using (var db = new HorizonData())
-            {
+        //public static List<string> getSeat()
+        //{
+        //    using (var db = new HorizonData())
+        //    {
+        //        List<string> m = new List<string>();
+        //        //DataAccess.SeatingChart x = db.SeatingCharts.Single(i => i.seat_id == );
+        //        foreach(var t in db.SeatingCharts)
+        //        {
+        //            m.Add(t.ToString());
+        //        }
+        //        return m;
+        //    }
 
-                DataAccess.SeatingChart x = db.SeatingCharts.Single(i => i.seat_id == y);
-                return x;
-            }
-
-        }
+        //}
         public static void updateSeat(int y, int z)
         {
             using (var db = new HorizonData())
@@ -39,7 +45,7 @@ namespace Database.Models
             }
 
         }
-        public static void deleteBook()
+        public static void deleteBook(int y)
         {
             using (var db = new HorizonData())
             {

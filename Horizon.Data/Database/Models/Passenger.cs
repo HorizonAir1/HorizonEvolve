@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database
+namespace Database.Models
 {
     public class Passenger
     {
@@ -13,7 +13,7 @@ namespace Database
         {
             using (var db = new HorizonData())
             {
-                Booking cancelB = new Booking();
+                DataAccess.Booking cancelB = new DataAccess.Booking();
                 foreach (var i in db.Bookings)
                 {
                     if ((i.passenger_id == y) && (i.flight_id == z))
@@ -38,7 +38,7 @@ namespace Database
         {
             using (var db = new HorizonData())
             {
-                Booking cancelB = db.Bookings.Single(x => x.Passenger.passenger_id == user);
+                DataAccess.Booking cancelB = db.Bookings.Single(x => x.Passenger.passenger_id == user);
                 if (cancelB != null)
                 {
                     cancelB.Flight.flight_id = flight;

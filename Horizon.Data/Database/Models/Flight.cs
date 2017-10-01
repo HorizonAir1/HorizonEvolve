@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
 
-namespace Database
+namespace Database.Models
 {
   public class Flight
   {
@@ -14,7 +14,7 @@ namespace Database
     {
       using (var db = new HorizonData())
       {
-        Booking addB = new Booking()
+        DataAccess.Booking addB = new DataAccess.Booking()
         {
           passenger_id = passenger_id,
           flight_id = FlightId,
@@ -30,14 +30,19 @@ namespace Database
       return true;
     }
 
-    public static Flight GetFlight(string flightId)
+    public static DataAccess.Flight GetFlight(int flightId)
     {
-      throw new NotImplementedException();
+            using (var db = new HorizonData())
+            {
+                DataAccess.Flight x = db.Flights.SingleOrDefault(i => i.flight_id == flightId);
+                return x;
+                
+            }
     }
 
-    public static List<List<string>> GetAllFlights(string startLoc, string destLoc, DateTime startSearch, DateTime endSearch, int numPassengers)
+    public static List<DataAccess.Flight> GetAllFlights(string startLoc, string destLoc, DateTime startSearch, DateTime endSearch, int numPassengers)
     {
-      List<List<string>> allFlights = new List<List<string>>();
+      List<DataAccess.Flight> allFlights = new List<DataAccess.Flight>();
       using (var db = new HorizonData())
       {
         foreach (var item in db.Flights)
@@ -45,17 +50,10 @@ namespace Database
           if ((item.departure==startLoc && item.destination==destLoc) &&
             (InBetween(startSearch,endSearch, item.depart_date, item.arrival_date)))
           {
-            List<string> flight = new List<string>();
-            flight.Add(item.flight_id.ToString());
-            flight.Add(item.arrival_time.ToString());
-            flight.Add(item.arrival_date.ToString());
-            flight.Add(item.depart_date.ToString());
-            flight.Add(item.depart_time.ToString());
-            flight.Add(item.destination);
-            flight.Add(item.departure);
+            
 
             //add seating here;
-            allFlights.Add(flight);
+            allFlights.Add(item);
           }
           
         }
@@ -64,18 +62,17 @@ namespace Database
       return allFlights;
     }
 
-    public static List<string> GetAllFlightDestinationsAndArrivals()
+    public static List<DataAccess.Flight> GetAllFlightDestinationsAndArrivals()
     {
-      List<string> allDestAndDep = new List<string>();
+      List<DataAccess.Flight> allDestAndDep = new List<DataAccess.Flight>();
 
       using (var db = new HorizonData())
       {
         foreach (var item in db.Flights)
         {
-          if (!allDestAndDep.Contains(item.destination))
-            allDestAndDep.Add(item.destination);
-          if (!allDestAndDep.Contains(item.departure))
-            allDestAndDep.Add(item.departure);
+          if (!allDestAndDep.Contains(item))
+            allDestAndDep.Add(item);
+      
         }
       }
 
