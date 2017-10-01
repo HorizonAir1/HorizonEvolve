@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace DataService.Controllers
 {
-  [Authorize]
+  [AllowAnonymous]
   public class PassengerController : ApiController
   {
     private FacadeHelper fh = FacadeHelper.Instance;
@@ -18,9 +18,9 @@ namespace DataService.Controllers
     {
       try
       {
-        Passenger getPassenger = fh.GetPassenger(Passenger);
-        if (getPassenger != null)
-          return Request.CreateResponse<Passenger>(HttpStatusCode.OK, getPassenger);
+        bool getPassenger = fh.GetPassenger(Passenger);
+        if (getPassenger)
+          return Request.CreateResponse<bool>(HttpStatusCode.OK, getPassenger);
         return Request.CreateResponse<string>(HttpStatusCode.NotFound, "No such Passenger");
       }
       catch (Exception e)

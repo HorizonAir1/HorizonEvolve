@@ -29,9 +29,9 @@ namespace DataService
       return true;
     }
 
-    public Passenger GetPassenger(Passenger passenger)
+    public bool GetPassenger(Passenger passenger)
     {
-      throw new NotImplementedException();
+      return true;
     }
 
     public bool RemovePassenger(Passenger passenger)

@@ -16,7 +16,7 @@ namespace DataService
       var opt = new CookieAuthenticationOptions()
       {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-        CookieHttpOnly = true,
+        CookieHttpOnly = false,
         CookieName = "Data-token",
         LoginPath = new PathString("/DataService/Account")
       };

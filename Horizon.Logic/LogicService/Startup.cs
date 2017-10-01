@@ -16,7 +16,7 @@ namespace LogicService
       var opt = new CookieAuthenticationOptions()
       {
         AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-        CookieHttpOnly = true,
+        CookieHttpOnly = false,
         CookieName = "Logic-token",
         LoginPath = new PathString("/LogicService/Account")
       };

@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace LogicService.Controllers
 {
-  [Authorize]
+  [AllowAnonymous]
   public class PassengerController : ApiController
   {
     // GET: api/Passenger
@@ -20,7 +20,7 @@ namespace LogicService.Controllers
 
         var client = new HttpClient();
         var res = client.GetAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/").GetAwaiter().GetResult();
-        Logout();
+        //Logout();
         return res;
 
       }

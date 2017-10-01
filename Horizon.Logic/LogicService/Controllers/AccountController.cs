@@ -1,4 +1,5 @@
 ﻿using LogicService.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace LogicService.Controllers
           new Claim("username", ConfigurationManager.AppSettings["user"]),
           new Claim("password", ConfigurationManager.AppSettings["pass"])
         };
-        var id = new ClaimsIdentity(claims, "ApplicationCookie");
+        var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
         _UserStore.Add(ConfigurationManager.AppSettings["user"], id);
       }
     }
