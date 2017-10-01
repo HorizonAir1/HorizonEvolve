@@ -36,8 +36,24 @@ namespace Horizon.Logic.Tests
     public void GetAllFlightsTest()
     {
       //add flight data
-      //check flights to see if flight is in flights list
-      Assert.True(true);
+         
+            using (var db = new HorizonData())
+            {
+                int c =  db.Flights.Count();
+                List<string> s = new List<string>();
+                DataAccess.Flight x = new DataAccess.Flight();
+                db.Flights.Add(x);
+                int cA = db.Flights.Count();
+                foreach (var i in db.Flights)
+                {
+                    s.Add(string.Format("{0} {1}",i.flight_id,i.depart_date));
+                    Console.WriteLine(string.Format("{0} {1}", i.flight_id, i.depart_date));
+                }
+               
+            }
+            
+                //check flights to see if flight is in flights list
+                Assert.True(true);
     }
 
     [Fact]

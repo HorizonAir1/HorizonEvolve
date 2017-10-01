@@ -87,6 +87,12 @@
     <Compile Include="SeatClass.cs">
       <DependentUpon>HorizonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeatingChart.cs">
+      <DependentUpon>HorizonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>HorizonData.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="HorizonData.edmx">

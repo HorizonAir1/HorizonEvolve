@@ -18,6 +18,7 @@ namespace DataAccess
         public Flight()
         {
             this.Bookings = new HashSet<Booking>();
+            this.SeatingCharts = new HashSet<SeatingChart>();
         }
     
         public int flight_id { get; set; }
@@ -32,5 +33,7 @@ namespace DataAccess
         public virtual Aircraft Aircraft { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SeatingChart> SeatingCharts { get; set; }
     }
 }

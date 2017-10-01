@@ -18,6 +18,9 @@
         <AssociationConnector Association="HorizonModel.FK_Booking_Passenger" ManuallyRouted="false" />
         <AssociationConnector Association="HorizonModel.FK_Booking_SeatClass" ManuallyRouted="false" />
         <AssociationConnector Association="HorizonModel.FK_Payment_Booking" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HorizonModel.sysdiagram" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HorizonModel.SeatingChart" Width="1.5" PointX="5.25" PointY="5.625" />
+        <AssociationConnector Association="HorizonModel.FK_SeatingChart_Flight" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

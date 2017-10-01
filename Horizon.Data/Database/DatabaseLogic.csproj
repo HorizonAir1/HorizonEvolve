@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="LogicFacade.cs" />
     <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\Seating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

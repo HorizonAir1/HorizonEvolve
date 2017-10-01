@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HorizonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HorizonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Aircraft">
           <Key>
             <PropertyRef Name="aircraft_id" />
@@ -76,6 +76,26 @@
           <Property Name="seatclass_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="desc" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="pricingTier" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeatingChart">
+          <Key>
+            <PropertyRef Name="seat_id" />
+          </Key>
+          <Property Name="seat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="section" Type="int" Nullable="false" />
+          <Property Name="seat" Type="int" Nullable="false" />
+          <Property Name="isTaken" Type="int" Nullable="false" />
+          <Property Name="flight_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Booking_BookingStatus">
           <End Role="BookingStatus" Type="Self.BookingStatus" Multiplicity="1" />
@@ -149,6 +169,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SeatingChart_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+          <End Role="SeatingChart" Type="Self.SeatingChart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="flight_id" />
+            </Principal>
+            <Dependent Role="SeatingChart">
+              <PropertyRef Name="flight_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HorizonModelStoreContainer">
           <EntitySet Name="Aircraft" EntityType="Self.Aircraft" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -157,6 +189,8 @@
           <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeatClass" EntityType="Self.SeatClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeatingChart" EntityType="Self.SeatingChart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Booking_BookingStatus" Association="Self.FK_Booking_BookingStatus">
             <End Role="BookingStatus" EntitySet="BookingStatus" />
             <End Role="Booking" EntitySet="Booking" />
@@ -181,9 +215,12 @@
             <End Role="Booking" EntitySet="Booking" />
             <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
+          <AssociationSet Name="FK_SeatingChart_Flight" Association="Self.FK_SeatingChart_Flight">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="SeatingChart" EntitySet="SeatingChart" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HorizonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -237,6 +274,7 @@
           <Property Name="aircraft_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Aircraft" Relationship="Self.FK_Flight_Aircraft" FromRole="Flight" ToRole="Aircraft" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Flight" FromRole="Flight" ToRole="Booking" />
+          <NavigationProperty Name="SeatingCharts" Relationship="HorizonModel.FK_SeatingChart_Flight" FromRole="Flight" ToRole="SeatingChart" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -375,7 +413,50 @@
             <End Role="Booking" EntitySet="Bookings" />
             <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="HorizonModel.sysdiagram" />
+          <EntitySet Name="SeatingCharts" EntityType="HorizonModel.SeatingChart" />
+          <AssociationSet Name="FK_SeatingChart_Flight" Association="HorizonModel.FK_SeatingChart_Flight">
+            <End Role="Flight" EntitySet="Flights" />
+            <End Role="SeatingChart" EntitySet="SeatingCharts" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SeatingChart">
+          <Key>
+            <PropertyRef Name="seat_id" />
+            <PropertyRef Name="section" />
+            <PropertyRef Name="seat" />
+            <PropertyRef Name="isTaken" />
+            <PropertyRef Name="flight_id" />
+          </Key>
+          <Property Name="seat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="section" Type="Int32" Nullable="false" />
+          <Property Name="seat" Type="Int32" Nullable="false" />
+          <Property Name="isTaken" Type="Int32" Nullable="false" />
+          <Property Name="flight_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flight" Relationship="HorizonModel.FK_SeatingChart_Flight" FromRole="SeatingChart" ToRole="Flight" />
+        </EntityType>
+        <Association Name="FK_SeatingChart_Flight">
+          <End Type="HorizonModel.Flight" Role="Flight" Multiplicity="1" />
+          <End Type="HorizonModel.SeatingChart" Role="SeatingChart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="flight_id" />
+            </Principal>
+            <Dependent Role="SeatingChart">
+              <PropertyRef Name="flight_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -458,6 +539,28 @@
                 <ScalarProperty Name="seatclass_id" ColumnName="seatclass_id" />
                 <ScalarProperty Name="desc" ColumnName="desc" />
                 <ScalarProperty Name="pricingTier" ColumnName="pricingTier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HorizonModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeatingCharts">
+            <EntityTypeMapping TypeName="HorizonModel.SeatingChart">
+              <MappingFragment StoreEntitySet="SeatingChart">
+                <ScalarProperty Name="flight_id" ColumnName="flight_id" />
+                <ScalarProperty Name="isTaken" ColumnName="isTaken" />
+                <ScalarProperty Name="seat" ColumnName="seat" />
+                <ScalarProperty Name="section" ColumnName="section" />
+                <ScalarProperty Name="seat_id" ColumnName="seat_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

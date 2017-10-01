@@ -32,5 +32,7 @@ namespace DataAccess
         public virtual DbSet<Passenger> Passengers { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<SeatClass> SeatClasses { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<SeatingChart> SeatingCharts { get; set; }
     }
 }
