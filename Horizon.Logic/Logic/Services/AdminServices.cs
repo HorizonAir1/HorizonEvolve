@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace Logic.Services
 {
     class AdminServices : ClientServices
     {
+        public AdminServices(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
+        {
+
+        }
     }
 }

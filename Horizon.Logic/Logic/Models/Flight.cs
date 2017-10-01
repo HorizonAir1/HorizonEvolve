@@ -19,5 +19,8 @@ namespace Logic.Models
 
         //Navigation - Relationship Properties
         public List<Booking> Bookings { get; set; }
+        public Aircraft Aircraft { get; set; }
+        public List<SeatingChart> SeatingCharts { get; set; }
+
     }
 }

@@ -21,5 +21,7 @@ namespace Logic.Models
         public Flight Flight { get; set; }
         public SeatClass SeatClass { get; set; }
         public BookingStatus Status { get; set; }
+        public Payment Payment { get; set; }
+
     }
 }

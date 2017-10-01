@@ -11,6 +11,7 @@ namespace Logic.Models
         //public int PaymentId { get; set; }
         public int BookingId { get; set; }
         public decimal PayAmount { get; set; }
-        public byte[] Paydate { get; set; }
+        public byte[] PayDate { get; set; }
+        public Booking Booking { get; set; }
     }
 }

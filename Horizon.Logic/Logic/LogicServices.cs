@@ -30,8 +30,8 @@ namespace Logic
                 addBooking.FlightId = flightId;
                 addBooking.SeatClassId = seatClassId;
                 addBooking.SeatNumber = seatNumber;
-                addBooking.BaggageCount = baggageCount;
-                addBooking.BookingStatusId = bookingStatusId;
+                //addBooking.BaggageCount = baggageCount;
+                //addBooking.BookingStatusId = bookingStatusId;
             }
             
             return true;

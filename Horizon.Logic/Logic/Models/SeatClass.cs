@@ -9,7 +9,7 @@ namespace Logic.Models
     public class SeatClass : BaseModel<int>
     {
        // public int SeatClassId { get; set; }
-        public string Desc { get; set; }
+        public string Description { get; set; }
         public int PricingTier { get; set; }
 
         //Navigation - Relationship Properties

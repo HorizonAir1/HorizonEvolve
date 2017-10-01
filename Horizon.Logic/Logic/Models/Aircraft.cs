@@ -13,5 +13,8 @@ namespace Logic.Models
         public int ModelNumber { get; set; }
         public int SeatActual { get; set; }
         public int SeatMax { get; set; }
+
+        public List<Flight> Flights { get; set; }
+
     }
 }

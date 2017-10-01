@@ -13,5 +13,6 @@ namespace Logic.Models
         public int Seat { get; set; }
         public bool IsTaken { get; set; } //TODO: talk to Jaime
         public int FlightId { get; set; }
+        public Flight Flight { get; set; }
     }
 }
