@@ -30,21 +30,32 @@ namespace DatabaseAPI.Controllers
     }
 
     // POST api/values
-    public void Post([FromBody]FlightModel flight)
+    public HttpResponseMessage Post([FromBody]FlightModel flight)
     {
-      //implement create flight
+            var x = fh.CreateFlight(flight);
+            if (x == true)
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "flight created");
+            return Request.CreateResponse<string>(HttpStatusCode.NotFound, "create flight failed");
     }
 
     // PUT api/values/5
-    public void Put(int id, [FromBody]string value)
+    public HttpResponseMessage Put(int id, [FromBody]FlightModel flight,BookingModel book)
     {
-      //implement update flight
+            var x = fh.updateBook(flight,book);
+            if (x == true)
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "flight updated");
+            return Request.CreateResponse<string>(HttpStatusCode.NotFound, "flight update failed");
+
     }
 
     // DELETE api/values/5
-    public void Delete(int id)
+    public HttpResponseMessage Delete(FlightModel flight)
     {
-      //implement cancel flight
+            var x = fh.DeleteFlight(flight);
+
+            if (x == true)
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "Flight deleted");
+            return Request.CreateResponse<string>(HttpStatusCode.NotFound, "flight delete failed");
     }
   }
 }
