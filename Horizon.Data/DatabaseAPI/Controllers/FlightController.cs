@@ -15,7 +15,7 @@ namespace DatabaseAPI.Controllers
     // GET api/values
     public HttpResponseMessage Get()
     {
-      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, fh.GetAllFlights());
+      return Request.CreateResponse<List<DataAccess.Flight>>(HttpStatusCode.OK, fh.GetAllFlights());
     }
 
     // GET api/values/5
@@ -32,16 +32,20 @@ namespace DatabaseAPI.Controllers
     // POST api/values
     public void Post([FromBody]string value)
     {
+      //implement create flight
     }
 
     // PUT api/values/5
     public void Put(int id, [FromBody]string value)
     {
+      //implement update flight
     }
 
     // DELETE api/values/5
     public void Delete(int id)
     {
+
+      //implement cancel flight
     }
   }
 }
