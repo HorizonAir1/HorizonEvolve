@@ -13,31 +13,37 @@ namespace DatabaseAPI.Controllers
   {
     private FacadeHelper fh = FacadeHelper.Instance;
     // GET: api/Booking
-    public HttpRequestMessage Get()
+    public HttpResponseMessage Get()
     {
-      return new string[] { "value1", "value2" };
+      throw new NotImplementedException();
     }
 
     // GET: api/Booking/5
-    public HttpRequestMessage Get(int id)
+    public HttpResponseMessage Get(int id)
     {
-      return "value";
+      throw new NotImplementedException();
     }
 
     // POST: api/Booking
-    public HttpRequestMessage Post(BookingModel booking)
+    public HttpResponseMessage Post(BookingModel booking)
     {
-      fh.BookPassenger()
+      if (fh.BookPassenger(booking))
+        return Request.CreateResponse<string>(HttpStatusCode.OK, "book success");
+      return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "book fail");
     }
 
     // PUT: api/Booking/5
-    public HttpRequestMessage Put(int id, [FromBody]string value)
+    public HttpResponseMessage Put(int id, [FromBody]string value)
     {
+      throw new NotImplementedException();
+
     }
 
     // DELETE: api/Booking/5
-    public HttpRequestMessage Delete(int id)
+    public HttpResponseMessage Delete(int id)
     {
+      throw new NotImplementedException();
+
     }
   }
 }
