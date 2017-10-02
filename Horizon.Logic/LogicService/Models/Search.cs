@@ -7,5 +7,10 @@ namespace LogicService.Models
 {
   public class Search
   {
+    public string StartLoc { get; set; }
+    public string EndLoc { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public int numPass { get; set; }
   }
 }
