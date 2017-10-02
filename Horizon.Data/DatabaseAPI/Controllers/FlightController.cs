@@ -15,13 +15,18 @@ namespace DatabaseAPI.Controllers
     // GET api/values
     public HttpResponseMessage Get()
     {
-      return Request.CreateResponse<List<FlightModel>>(fh.getAllflights()
+      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, fh.GetAllFlights());
     }
 
     // GET api/values/5
-    public string Get(int id)
+    public HttpResponseMessage Get(FlightModel flight)
     {
-      return "value";
+      FlightModel getFlight = fh.GetFlight(flight);
+      if (getFlight != null)
+      {
+        return Request.CreateResponse<FlightModel>(HttpStatusCode.OK, getFlight);
+      }
+      return Request.CreateResponse<string>(HttpStatusCode.NotFound, "no existing flight");
     }
 
     // POST api/values
