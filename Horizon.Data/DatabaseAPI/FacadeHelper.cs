@@ -77,6 +77,11 @@ namespace DatabaseAPI
         {
             return lf.UpdateFlight(flight.flight_id,flight.arrival_time, flight.arrival_date, flight.dep_time, flight.dep_date, flight.destination, flight.departure, flight.aircraft_id);
         }
+        public bool DeleteFlight(FlightModel flight)
+        {
+            return lf.DeleteFlight(flight.flight_id);
+        }
+       
         public bool BookPassenger(BookingModel book)
         {
             return lf.BookPassenger(book.passenger_email, book.flight_id, book.seatclass_id,book.seat_number, book.baggage_num);
