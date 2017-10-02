@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,32 +8,35 @@ using System.Web.Http;
 
 namespace DatabaseAPI.Controllers
 {
+  [AllowAnonymous]
   public class BookingController : ApiController
   {
+    private FacadeHelper fh = FacadeHelper.Instance;
     // GET: api/Booking
-    public IEnumerable<string> Get()
+    public HttpRequestMessage Get()
     {
       return new string[] { "value1", "value2" };
     }
 
     // GET: api/Booking/5
-    public string Get(int id)
+    public HttpRequestMessage Get(int id)
     {
       return "value";
     }
 
     // POST: api/Booking
-    public void Post([FromBody]string value)
+    public HttpRequestMessage Post(BookingModel booking)
     {
+      fh.BookPassenger()
     }
 
     // PUT: api/Booking/5
-    public void Put(int id, [FromBody]string value)
+    public HttpRequestMessage Put(int id, [FromBody]string value)
     {
     }
 
     // DELETE: api/Booking/5
-    public void Delete(int id)
+    public HttpRequestMessage Delete(int id)
     {
     }
   }

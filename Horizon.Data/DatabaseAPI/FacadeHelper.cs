@@ -69,9 +69,9 @@ namespace DatabaseAPI
             return flight;
 
         }
-        public bool BookPassenger(PassengerModel Passenger, BookingModel book)
+        public bool BookPassenger(BookingModel book)
         {
-            return lf.BookPassenger(Passenger.passenger_id, book.flight_id, book.seatclass_id,book.seat_number, book.baggage_num);
+            return lf.BookPassenger(book.passenger_email, book.flight_id, book.seatclass_id,book.seat_number, book.baggage_num);
             
         }
         public List<DataAccess.Flight> GetAllFlightsDestinations()

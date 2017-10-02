@@ -41,9 +41,9 @@ namespace Database
             return Database.Models.Flight.GetFlight(flightid);
         }
 
-        public bool BookPassenger(int passenger_id, int FlightId, int seatClass, int seatNumber, int numBags)
+        public bool BookPassenger(string passenger_email, int FlightId, int seatClass, int seatNumber, int numBags)
         {
-            return Models.Flight.BookPassenger(passenger_id, FlightId, seatClass, seatNumber, numBags);
+            return Models.Flight.BookPassenger(passenger_email, FlightId, seatClass, seatNumber, numBags);
         }
 
  

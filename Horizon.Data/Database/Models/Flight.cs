@@ -10,13 +10,14 @@ namespace Database.Models
 {
   public class Flight
   {
-    public static bool BookPassenger(int passenger_id, int FlightId, int seatClass,  int seatNumber, int numBags)
+    public static bool BookPassenger(string passenger_email, int FlightId, int seatClass,  int seatNumber, int numBags)
     {
       using (var db = new HorizonData())
       {
+        DataAccess.Passenger pass = db.Passengers.SingleOrDefault(p => p.email == passenger_email);
         DataAccess.Booking addB = new DataAccess.Booking()
         {
-          passenger_id = passenger_id,
+          passenger_id = pass.passenger_id,
           flight_id = FlightId,
           seatclass_id= seatClass,
           seat_number = seatNumber,
