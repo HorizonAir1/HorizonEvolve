@@ -1,4 +1,5 @@
-﻿using LogicService.Models;
+﻿using LogicService.Controllers.Helpers;
+using LogicService.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,60 +14,59 @@ namespace LogicService.Controllers
   public class PassengerController : ApiController
   {
     // GET: api/Passenger
-    public HttpResponseMessage Get(Passenger passenger)
+    public HttpResponseMessage Get(PassengerModel passenger)
     {
-      if (Login())
+      if (DataAccountHelper.Login())
       {
-
         var client = new HttpClient();
         var res = client.GetAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/").GetAwaiter().GetResult();
-        //Logout();
+        DataAccountHelper.Logout();
         return res;
 
       }
       return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
     }
 
-    // GET: api/Passenger/5
-    public string Get(int id)
-    {
-
-      return "value";
-    }
-
     // POST: api/Passenger
-    public void Post([FromBody]string value)
+    public HttpResponseMessage Post(PassengerModel passenger)
     {
+      if (DataAccountHelper.Login())
+      {
+        var client = new HttpClient();
+        var res = client.PostAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
+        DataAccountHelper.Logout();
+        return res;
+
+      }
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
     }
 
     // PUT: api/Passenger/5
-    public void Put(int id, [FromBody]string value)
+    public HttpResponseMessage Put(PassengerModel passenger)
     {
+      if (DataAccountHelper.Login())
+      {
+        var client = new HttpClient();
+        var res = client.PutAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
+        DataAccountHelper.Logout();
+        return res;
+
+      }
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
     }
 
     // DELETE: api/Passenger/5
-    public void Delete(int id)
+    public HttpResponseMessage Delete(string email)
     {
-    }
-
-    private bool Login()
-    {
-      var client = new HttpClient();
-      var res = client.PostAsJsonAsync<UserProfile>(ConfigurationManager.AppSettings["DataUri"] + "Account/", new UserProfile()
+      if (DataAccountHelper.Login())
       {
-        Username = ConfigurationManager.AppSettings["DataUser"],
-        Password = ConfigurationManager.AppSettings["DataPass"]
-      }).GetAwaiter().GetResult();
+        var client = new HttpClient();
+        var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/" +email).GetAwaiter().GetResult();
+        DataAccountHelper.Logout();
+        return res;
 
-      return res.IsSuccessStatusCode;
-    }
-
-    private bool Logout()
-    {
-      var client = new HttpClient();
-      var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Account/").GetAwaiter().GetResult();
-
-      return res.IsSuccessStatusCode;
-    }
+      }
+      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+    } 
   }
 }

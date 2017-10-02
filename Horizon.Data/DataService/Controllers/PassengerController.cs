@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace DataService.Controllers
 {
-  [AllowAnonymous]
+  [Authorize]
   public class PassengerController : ApiController
   {
     private FacadeHelper fh = FacadeHelper.Instance;
