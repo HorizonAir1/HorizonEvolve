@@ -63,7 +63,7 @@ namespace DatabaseAPI.Controllers
         }
 
         // DELETE: api/Passenger/5
-        //public HttpResponseMessage Delete(Passenger passenger)
+        //public HttpResponseMessage Delete(string email)
         //{
         //    try
         //    {
