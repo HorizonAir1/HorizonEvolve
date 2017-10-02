@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,10 +11,11 @@ namespace DatabaseAPI.Controllers
   [AllowAnonymous]
   public class FlightController : ApiController
   {
+    private FacadeHelper fh = FacadeHelper.Instance;
     // GET api/values
     public HttpResponseMessage Get()
     {
-      
+      return Request.CreateResponse<List<FlightModel>>(fh.getAllflights()
     }
 
     // GET api/values/5

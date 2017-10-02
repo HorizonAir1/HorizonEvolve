@@ -78,6 +78,12 @@ namespace DatabaseAPI
         {
             return lf.GetAllFlightDestinations();
         }
+
+        public List<DataAccess.Flight> GetAllFlights()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DataAccess.Flight> getAllflights(Search s)
         {
             return lf.GetAllFlights(s.StartLoc,s.EndLoc,s.StartTime,s.EndTime,s.numPass);
