@@ -56,7 +56,7 @@ namespace DatabaseAPI
         }
         public bool ModifyFlight(PassengerModel passenger,FlightModel flight,BookingModel book)
         {
-            return lf.ModifyFlight(passenger.passenger_id,flight.flight_id,)
+            return lf.ModifyFlight(passenger.passenger_id, flight.flight_id, book.seat_number);
         }
        
     }
