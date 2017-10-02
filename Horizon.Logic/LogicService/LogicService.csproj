@@ -219,6 +219,7 @@
     <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\FlightModel.cs" />
     <Compile Include="Models\PassengerModel.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\SeatingModel.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
