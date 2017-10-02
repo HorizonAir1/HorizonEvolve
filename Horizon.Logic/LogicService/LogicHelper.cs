@@ -22,7 +22,5 @@ namespace LogicService
         return _instance;
       }
     }
-
-    public 
   }
 }
