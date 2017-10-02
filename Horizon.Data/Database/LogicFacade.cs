@@ -26,7 +26,7 @@ namespace Database
         {
             return Models.Passenger.addPassenger(fname, lname, mname, add, bdate, email, nums);
         }
-        public bool UpdatePassenger(int passid, string fname, string lname, string mname, string add, DateTime bdate, string email, string nums)
+        public bool UpdatePassenger(string fname, string lname, string mname, string add, DateTime bdate, string email, string nums)
         {
             return Models.Passenger.UpdatePassenger(fname, lname, mname, add, bdate, email, nums);
         }
@@ -35,7 +35,7 @@ namespace Database
             return Models.Passenger.GetPassenger(mail);
             
         }
-        //FLIGHTS 
+        //FLIGHTS  
         public DataAccess.Flight GetFlight(int flightid)
         {
             return Database.Models.Flight.GetFlight(flightid);
@@ -46,11 +46,7 @@ namespace Database
             return Models.Flight.BookPassenger(passenger_id, FlightId, seatClass, seatNumber, numBags);
         }
 
-        public bool UpdatePassenger(string firstname, string lastname, string middle, string address, DateTime birth_date, string email, string tel_num)
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         public List<DataAccess.Flight> GetAllFlightDestinations()
         {
             return Models.Flight.GetAllFlightDestinationsAndArrivals();

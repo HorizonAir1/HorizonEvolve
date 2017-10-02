@@ -68,9 +68,9 @@
       <Project>{314de422-11e9-4404-8aa2-bf927756995e}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Database\DatabaseLogic.csproj">
+    <ProjectReference Include="..\Database\Database.csproj">
       <Project>{3f0c2bfb-142c-4a88-a8c8-2effa5a2d75b}</Project>
-      <Name>DatabaseLogic</Name>
+      <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -180,11 +180,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FlightController.cs" />
     <Compile Include="Controllers\PassengerController.cs" />
+    <Compile Include="FacadeHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Flight.cs" />
-    <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\BookingModel.cs" />
+    <Compile Include="Models\FlightModel.cs" />
+    <Compile Include="Models\PassengerModel.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -256,9 +259,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Database\DatabaseLogic.csproj">
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{314DE422-11E9-4404-8AA2-BF927756995E}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
       <Project>{3f0c2bfb-142c-4a88-a8c8-2effa5a2d75b}</Project>
-      <Name>DatabaseLogic</Name>
+      <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -7,6 +7,7 @@ namespace DatabaseAPI.Models
 {
     public class BookingModel
     {
+
         public int booking_id { get; set; }
         public int flight_id { get; set; }
         public int seatclass_id { get; set; }
