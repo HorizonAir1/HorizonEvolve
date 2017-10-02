@@ -12,8 +12,9 @@ using System.Web.Http;
 
 namespace DatabaseAPI.Controllers
 {
-    public class AccountController : ApiController
-    {
+  [AllowAnonymous]
+  public class AccountController : ApiController
+  {
     private static Dictionary<string, ClaimsIdentity> _UserStore = new Dictionary<string, ClaimsIdentity>();
 
     public AccountController() : base()

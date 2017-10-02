@@ -7,33 +7,34 @@ using System.Web.Http;
 
 namespace DatabaseAPI.Controllers
 {
-    public class FlightController : ApiController
+  [AllowAnonymous]
+  public class FlightController : ApiController
+  {
+    // GET api/values
+    public HttpResponseMessage Get()
     {
-        // GET api/values
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+      
     }
+
+    // GET api/values/5
+    public string Get(int id)
+    {
+      return "value";
+    }
+
+    // POST api/values
+    public void Post([FromBody]string value)
+    {
+    }
+
+    // PUT api/values/5
+    public void Put(int id, [FromBody]string value)
+    {
+    }
+
+    // DELETE api/values/5
+    public void Delete(int id)
+    {
+    }
+  }
 }
