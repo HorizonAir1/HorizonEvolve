@@ -14,7 +14,7 @@ namespace DatabaseAPI.Models
         public int seat_number { get; set; }
         public int baggage_num { get; set; }
         public int status_id { get; set; }
-        public int passenger_email{ get; set; }
+        public string passenger_email{ get; set; }
 
     }
 }
