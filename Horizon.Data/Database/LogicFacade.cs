@@ -51,6 +51,18 @@ namespace Database
         {
             return Models.Flight.GetAllFlightDestinationsAndArrivals();
         }
+        public bool DeleteFlight(int flightid)
+        {
+            return Models.Flight.deleteFlight(flightid);
+        }
+        public bool CreateFlight(TimeSpan arrtime, DateTime arrdate, TimeSpan deptime, DateTime depdate, string dest, string dep, int craftid)
+        {
+            return Models.Flight.createFlight(arrtime,arrdate,deptime,depdate,dest,dep,craftid);
+        }
+        public bool UpdateFlight(int flightS,TimeSpan arrtime, DateTime arrdate, TimeSpan deptime, DateTime depdate, string dest, string dep, int craftid)
+        {
+            return Models.Flight.updateFlight(flightS,arrtime, arrdate, deptime, depdate, dest, dep, craftid);
+        }
         // CHECK
         public List<DataAccess.Flight> GetAllFlights(string startLoc, string destLoc, DateTime startSearch, DateTime endSearch, int numPassengers)
         {

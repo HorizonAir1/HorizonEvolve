@@ -8,9 +8,57 @@ using DataAccess;
 
 namespace Database.Models
 {
-  public class Flight
-  {
-    public static bool BookPassenger(string passenger_email, int FlightId, int seatClass,  int seatNumber, int numBags)
+    public class Flight
+    {
+        public static bool createFlight(TimeSpan arrtime, DateTime arrdate, TimeSpan deptime, DateTime depdate, string dest, string dep, int craftid)
+        {
+            using (var db = new HorizonData())
+            {
+                DataAccess.Flight x = new DataAccess.Flight();
+                x.arrival_time = arrtime;
+                x.arrival_date = arrdate;
+                x.depart_time = deptime;
+                x.depart_date = depdate;
+                x.destination = dest;
+                x.departure = dep;
+                x.aircraft_id = craftid;
+
+                db.Flights.Add(x);
+                db.SaveChanges();
+                return true;
+            }
+        }
+        public static bool updateFlight(int flightS, TimeSpan arrtime, DateTime arrdate, TimeSpan deptime, DateTime depdate, string dest, string dep, int craftid)
+        {
+            using (var db = new HorizonData())
+            {
+                DataAccess.Flight x = db.Flights.SingleOrDefault(i => i.flight_id == flightS);
+                x.arrival_time = arrtime;
+                x.arrival_date = arrdate;
+                x.depart_time = deptime;
+                x.depart_date = depdate;
+                x.destination = dest;
+                x.departure = dep;
+                x.aircraft_id = craftid;
+
+                db.Flights.Add(x);
+                db.SaveChanges();
+                return true;
+            }
+        }
+        public static bool deleteFlight(int x)
+            {
+            using (var db = new HorizonData())
+            {
+                DataAccess.Flight t = db.Flights.SingleOrDefault(i => i.flight_id == x);
+                db.Flights.Remove(t);
+                db.SaveChanges();
+                return true;
+                
+
+            }
+            }
+        public static bool BookPassenger(string passenger_email, int FlightId, int seatClass,  int seatNumber, int numBags)
     {
       using (var db = new HorizonData())
       {

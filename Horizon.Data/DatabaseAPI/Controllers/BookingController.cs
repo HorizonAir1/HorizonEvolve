@@ -13,16 +13,15 @@ namespace DatabaseAPI.Controllers
   {
     private FacadeHelper fh = FacadeHelper.Instance;
     // GET: api/Booking
-    public HttpResponseMessage Get()
+    public HttpResponseMessage Get(BookingModel book)
     {
-      throw new NotImplementedException();
+            var x = fh.GetBooking(book);
+            if (x != null)
+                return Request.CreateResponse<BookingModel>(HttpStatusCode.OK, x);
+            return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "get fail");
     }
 
-    // GET: api/Booking/5
-    public HttpResponseMessage Get(int id)
-    {
-      throw new NotImplementedException();
-    }
+   
 
     // POST: api/Booking
     public HttpResponseMessage Post(BookingModel booking)
@@ -33,16 +32,21 @@ namespace DatabaseAPI.Controllers
     }
 
     // PUT: api/Booking/5
-    public HttpResponseMessage Put(int id, [FromBody]string value)
+    public HttpResponseMessage Put(FlightModel flight,BookingModel book)
     {
-      throw new NotImplementedException();
+            if (fh.updateBook(flight, book))
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "Update Book Success");
+            return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "Update Book Fail ");
+
 
     }
 
     // DELETE: api/Booking/5
-    public HttpResponseMessage Delete(int id)
+    public HttpResponseMessage Delete(BookingModel book)
     {
-      throw new NotImplementedException();
+            if (fh.deleteBook(book))
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "Delete Book Success");
+            return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "Delete Book Fail");
 
     }
   }

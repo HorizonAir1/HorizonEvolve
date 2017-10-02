@@ -30,7 +30,7 @@ namespace DatabaseAPI.Controllers
     }
 
     // POST api/values
-    public void Post([FromBody]string value)
+    public void Post([FromBody]FlightModel flight)
     {
       //implement create flight
     }
@@ -44,7 +44,6 @@ namespace DatabaseAPI.Controllers
     // DELETE api/values/5
     public void Delete(int id)
     {
-
       //implement cancel flight
     }
   }
