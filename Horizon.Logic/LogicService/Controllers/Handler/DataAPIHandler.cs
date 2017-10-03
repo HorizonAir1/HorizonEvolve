@@ -49,8 +49,7 @@ namespace LogicService.Controllers.Handler
 
     public bool Logout()
     {
-      var client = new HttpClient();
-      var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Account/").GetAwaiter().GetResult();
+      var res = DeleteResponse("Account/");
 
       return res.IsSuccessStatusCode;
     }
@@ -63,6 +62,11 @@ namespace LogicService.Controllers.Handler
     public HttpResponseMessage PostResponse<T>(string controllerString, T obj)
     {
       return _client.PostAsJsonAsync<T>(controllerString, obj).GetAwaiter().GetResult();
+    }
+
+    public HttpResponseMessage DeleteResponse(string controllerString)
+    {
+      return _client.DeleteAsync(controllerString).GetAwaiter().GetResult();
     }
 
     
