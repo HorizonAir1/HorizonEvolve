@@ -207,7 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FlightController.cs" />
-    <Compile Include="Controllers\Helpers\DataAccountHelper.cs" />
+    <Compile Include="Controllers\Handler\DataAPIHandler.cs" />
     <Compile Include="Controllers\PassengerController.cs" />
     <Compile Include="Controllers\SeatingController.cs" />
     <Compile Include="Global.asax.cs">
