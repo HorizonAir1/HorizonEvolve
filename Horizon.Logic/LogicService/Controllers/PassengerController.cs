@@ -1,5 +1,4 @@
 ﻿using LogicService.Controllers.Handler;
-using LogicService.Controllers.Helpers;
 using LogicService.Models;
 using System;
 using System.Collections.Generic;
@@ -20,8 +19,7 @@ namespace LogicService.Controllers
     {
       if (_dah.Login())
       {
-        var client = new HttpClient();
-        var res = client.GetAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/").GetAwaiter().GetResult();
+        var res = _dah.GetResponse("Passenger/");
         _dah.Logout();
         return res;
 
@@ -34,8 +32,7 @@ namespace LogicService.Controllers
     {
       if (_dah.Login())
       {
-        var client = new HttpClient();
-        var res = client.PostAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
+        var res = _dah.PostResponse<PassengerModel>("Passenger/", passenger);
         _dah.Logout();
         return res;
 
@@ -46,29 +43,31 @@ namespace LogicService.Controllers
     // PUT: api/Passenger/5
     public HttpResponseMessage Put(PassengerModel passenger)
     {
-      if (_dah.Login())
-      {
-        var client = new HttpClient();
-        var res = client.PutAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
-        _dah.Logout();
-        return res;
+      //if (_dah.Login())
+      //{
+      //  var res = client.PutAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
+      //  _dah.Logout();
+      //  return res;
 
-      }
-      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+      //}
+      //return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+      throw new NotImplementedException();
     }
 
     // DELETE: api/Passenger/5
     public HttpResponseMessage Delete(string email)
     {
-      if (_dah.Login())
-      {
-        var client = new HttpClient();
-        var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/" +email).GetAwaiter().GetResult();
-        _dah.Logout();
-        return res;
+      //if (_dah.Login())
+      //{
+      //  var client = new HttpClient();
+      //  var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/" +email).GetAwaiter().GetResult();
+      //  _dah.Logout();
+      //  return res;
 
-      }
-      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+      //}
+      //return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+
+      throw new NotImplementedException();
     } 
   }
 }
