@@ -24,25 +24,25 @@ namespace DataService
       }
     }
 
-    public bool CreatePassenger(Passenger passenger)
-    {
-      return true;
-    }
+    //public bool CreatePassenger(Passenger passenger)
+    //{
+    //  return true;
+    //}
 
-    public bool GetPassenger(Passenger passenger)
-    {
-      return true;
-    }
+    //public bool GetPassenger(Passenger passenger)
+    //{
+    //  return true;
+    //}
 
-    public bool RemovePassenger(Passenger passenger)
-    {
-      return true;
-    }
+    //public bool RemovePassenger(Passenger passenger)
+    //{
+    //  return true;
+    //}
 
-    public bool UpdatePassenger(Passenger passenger)
-    {
-      return true;
-    }
+    //public bool UpdatePassenger(Passenger passenger)
+    //{
+    //  return true;
+    //}
 
   }
 }
