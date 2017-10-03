@@ -6,21 +6,37 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 
-namespace LogicService.Controllers.Helpers
+namespace LogicService.Controllers.Handler
 {
   public class DataAPIHandler
   {
     private WebRequestHandler _handler;
+    private HttpClient _client;
 
-    private static DataAccountHelper _instance;
+    private static DataAPIHandler _instance;
 
-    private DataAccountHelper()
+    private DataAPIHandler()
     {
-      _handler
+      _handler = new WebRequestHandler();
+      _handler.CookieContainer = new System.Net.CookieContainer();
+      _handler.UseCookies = true;
+      _handler.UseDefaultCredentials = true;
+
+      _client = new HttpClient(_handler);
+      _client.BaseAddress = new Uri(ConfigurationManager.AppSettings["DataUri"]);
+    }
+
+    public DataAPIHandler Instance 
+    {
+      get
+      {
+        if (_instance == null) _instance = new DataAPIHandler();
+        return _instance;
+      }
     }
 
 
-    public static bool Login()
+    public bool Login()
     {
       var client = new HttpClient();
       var res = client.PostAsJsonAsync<UserProfile>(ConfigurationManager.AppSettings["DataUri"] + "Account/", new UserProfile()
@@ -32,7 +48,7 @@ namespace LogicService.Controllers.Helpers
       return res.IsSuccessStatusCode;
     }
 
-    public static bool Logout()
+    public bool Logout()
     {
       var client = new HttpClient();
       var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Account/").GetAwaiter().GetResult();
@@ -40,17 +56,16 @@ namespace LogicService.Controllers.Helpers
       return res.IsSuccessStatusCode;
     }
 
-    public static HttpResponseMessage GetResponse(string controllerString)
+    public HttpResponseMessage GetResponse(string controllerString)
     {
-      WebRequestHandler handler = new WebRequestHandler();
-      handler.CookieContainer = new System.Net.CookieContainer();
-      handler.UseCookies = true;
-      handler.UseDefaultCredentials = true;
-
-      HttpClient client = new HttpClient(handler);
-      client.BaseAddress = new Uri(ConfigurationManager.AppSettings["DataUri"]);
-      return response = client.GetAsync(controllerString).Result;
+      return _client.GetAsync(controllerString).GetAwaiter().GetResult();
     }
+
+    public HttpResponseMessage PostResponse(string controllerString, object o)
+    {
+      return _client.PostAsJsonAsync,UserProfile>()
+    }
+
     
   }
 }
