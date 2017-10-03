@@ -42,7 +42,7 @@ namespace LogicService.Controllers
     }
 
     // DELETE: api/Booking/5
-    public HttpResponseMessage Delete(BookingModel booking)
+    public HttpResponseMessage Delete(int bookingid)
     {//cancel booking for passenger
       //check repo(logic) to see if passenger has booking
 

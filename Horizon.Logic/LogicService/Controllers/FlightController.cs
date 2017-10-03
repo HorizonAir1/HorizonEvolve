@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,33 +8,48 @@ using System.Web.Http;
 
 namespace LogicService.Controllers
 {
-    public class FlightController : ApiController
-    {
-        // GET: api/Flight
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Flight/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Flight
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Flight/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Flight/5
-        public void Delete(int id)
-        {
-        }
+  public class FlightController : ApiController
+  {
+    // GET: api/Flight
+    public HttpResponseMessage Get()
+    {//get all flights from repo
+      throw new NotImplementedException();
     }
+
+    // GET: api/Flight/5
+    public HttpResponseMessage Get(string email)
+    {// get all flights for passenger from repo
+      throw new NotImplementedException();
+    }
+
+    // POST: api/Flight
+    public HttpResponseMessage Post(FlightModel flight)
+    {//create a flight 
+      //check logic to see if flight can be made (not necessary, unless two shuttles cannot launch at the same time)
+
+      //create flight in both repo and database (same time)
+
+      throw new NotImplementedException();
+    }
+
+    // PUT: api/Flight/5
+    public HttpResponseMessage Put(FlightModel flight)
+    {//update flight
+      //check logic to see if flight exists
+
+      //update flight in repo and database (same time)
+
+      throw new NotImplementedException();
+    }
+
+    // DELETE: api/Flight/5
+    public HttpResponseMessage Delete(int id)
+    {
+      //check logic if flight exists
+
+      //delete flight in repo ad database(same time)
+
+      throw new NotImplementedException();
+    }
+  }
 }
