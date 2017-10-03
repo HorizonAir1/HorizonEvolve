@@ -12,7 +12,6 @@ namespace LogicService.Controllers.Handler
   {
     private WebRequestHandler _handler;
     private HttpClient _client;
-
     private static DataAPIHandler _instance;
 
     private DataAPIHandler()
@@ -35,7 +34,6 @@ namespace LogicService.Controllers.Handler
       }
     }
 
-
     public bool Login()
     {
       var res = PostResponse<UserProfile>("Account/", new UserProfile()
@@ -43,14 +41,12 @@ namespace LogicService.Controllers.Handler
         Username = ConfigurationManager.AppSettings["DataUser"],
         Password = ConfigurationManager.AppSettings["DataPass"]
       });
-
       return res.IsSuccessStatusCode;
     }
 
     public bool Logout()
     {
       var res = DeleteResponse("Account/");
-
       return res.IsSuccessStatusCode;
     }
 
@@ -67,8 +63,6 @@ namespace LogicService.Controllers.Handler
     public HttpResponseMessage DeleteResponse(string controllerString)
     {
       return _client.DeleteAsync(controllerString).GetAwaiter().GetResult();
-    }
-
-    
+    } 
   }
 }
