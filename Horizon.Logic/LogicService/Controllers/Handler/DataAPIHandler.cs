@@ -25,7 +25,7 @@ namespace LogicService.Controllers.Handler
       _client.BaseAddress = new Uri(ConfigurationManager.AppSettings["DataUri"]);
     }
 
-    public DataAPIHandler Instance 
+    public static DataAPIHandler Instance 
     {
       get
       {

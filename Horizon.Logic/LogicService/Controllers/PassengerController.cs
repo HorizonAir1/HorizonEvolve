@@ -1,4 +1,5 @@
-﻿using LogicService.Controllers.Helpers;
+﻿using LogicService.Controllers.Handler;
+using LogicService.Controllers.Helpers;
 using LogicService.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace LogicService.Controllers
   [AllowAnonymous]
   public class PassengerController : ApiController
   {
+    private DataAPIHandler _dah = DataAPIHandler.Instance;
     // GET: api/Passenger
     public HttpResponseMessage Get(PassengerModel passenger)
     {
