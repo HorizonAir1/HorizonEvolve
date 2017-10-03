@@ -18,11 +18,11 @@ namespace LogicService.Controllers
     // GET: api/Passenger
     public HttpResponseMessage Get(PassengerModel passenger)
     {
-      if (DataAccountHelper.Login())
+      if (_dah.Login())
       {
         var client = new HttpClient();
         var res = client.GetAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/").GetAwaiter().GetResult();
-        DataAccountHelper.Logout();
+        _dah.Logout();
         return res;
 
       }
@@ -32,11 +32,11 @@ namespace LogicService.Controllers
     // POST: api/Passenger
     public HttpResponseMessage Post(PassengerModel passenger)
     {
-      if (DataAccountHelper.Login())
+      if (_dah.Login())
       {
         var client = new HttpClient();
         var res = client.PostAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
-        DataAccountHelper.Logout();
+        _dah.Logout();
         return res;
 
       }
@@ -46,11 +46,11 @@ namespace LogicService.Controllers
     // PUT: api/Passenger/5
     public HttpResponseMessage Put(PassengerModel passenger)
     {
-      if (DataAccountHelper.Login())
+      if (_dah.Login())
       {
         var client = new HttpClient();
         var res = client.PutAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
-        DataAccountHelper.Logout();
+        _dah.Logout();
         return res;
 
       }
@@ -60,11 +60,11 @@ namespace LogicService.Controllers
     // DELETE: api/Passenger/5
     public HttpResponseMessage Delete(string email)
     {
-      if (DataAccountHelper.Login())
+      if (_dah.Login())
       {
         var client = new HttpClient();
         var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/" +email).GetAwaiter().GetResult();
-        DataAccountHelper.Logout();
+        _dah.Logout();
         return res;
 
       }
