@@ -208,10 +208,8 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FlightController.cs" />
     <Compile Include="Controllers\Helpers\DataAccountHelper.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PassengerController.cs" />
     <Compile Include="Controllers\SeatingController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
