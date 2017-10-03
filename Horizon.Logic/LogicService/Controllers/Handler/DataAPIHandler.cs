@@ -38,12 +38,11 @@ namespace LogicService.Controllers.Handler
 
     public bool Login()
     {
-      var client = new HttpClient();
-      var res = client.PostAsJsonAsync<UserProfile>(ConfigurationManager.AppSettings["DataUri"] + "Account/", new UserProfile()
+      var res = PostResponse<UserProfile>("Account/", new UserProfile()
       {
         Username = ConfigurationManager.AppSettings["DataUser"],
         Password = ConfigurationManager.AppSettings["DataPass"]
-      }).GetAwaiter().GetResult();
+      });
 
       return res.IsSuccessStatusCode;
     }
@@ -61,9 +60,9 @@ namespace LogicService.Controllers.Handler
       return _client.GetAsync(controllerString).GetAwaiter().GetResult();
     }
 
-    public HttpResponseMessage PostResponse(string controllerString, object o)
+    public HttpResponseMessage PostResponse<T>(string controllerString, T obj)
     {
-      return _client.PostAsJsonAsync,UserProfile>()
+      return _client.PostAsJsonAsync<T>(controllerString, obj).GetAwaiter().GetResult();
     }
 
     
