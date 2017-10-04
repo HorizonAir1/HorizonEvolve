@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Logic.Repos;
-using Logic.Models;
 using Logic.Database.Repositories;
+using Logic.Models;
 
-namespace Database.Repositories
+namespace Logic.Repos
 {
     public class BookingRepository : Repository<Booking, int>, IBookingRepository
     {
@@ -12,8 +11,6 @@ namespace Database.Repositories
             : base(context)
         {
         }
-
-        List<Booking> bookings = new List<Booking>();
 
         public IEnumerable<Booking> GetAllFutureBookings()
         {

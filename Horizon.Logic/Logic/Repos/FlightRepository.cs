@@ -4,7 +4,7 @@ using System.Linq;
 using Logic.Database.Repositories;
 using Logic.Models;
 
-namespace Database.Repositories
+namespace Logic.Repos
 {
     public class FlightRepository : Repository<Flight, int>, IFlightRepository
     {
@@ -12,8 +12,6 @@ namespace Database.Repositories
             : base(context)
         {
         }
-
-        public List<Flight> flights = new List<Flight>();
 
         public IEnumerable<Flight> GetAvailFlightsWithDuration(string departLocation, string arrivalDestination, DateTime departDate, DateTime? returnDate)
         {
