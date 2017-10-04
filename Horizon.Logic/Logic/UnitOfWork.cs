@@ -1,10 +1,9 @@
 ﻿using Logic.Database;
 using Logic.Database.Repositories;
-using Database.Repositories;
 using Logic.Repos;
 using System.Collections.Generic;
 
-namespace Database
+namespace Logic
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -15,7 +14,7 @@ namespace Database
             Aircrafts = new AircraftRepository(context);
             Bookings = new BookingRepository(bookingRepository);
             BookingStatuses = new BookingStatusRepository(context);
-            Flights = new FlightRepository(,);
+            Flights = new FlightRepository();
             Passengers = new PassengerRepository(context);
             Payments = new PaymentRepository(context);
             SeatClasses = new SeatClassRepository(context);
