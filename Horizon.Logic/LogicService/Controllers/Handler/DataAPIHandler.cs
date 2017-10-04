@@ -64,5 +64,7 @@ namespace LogicService.Controllers.Handler
     {
       return _client.DeleteAsync(controllerString).GetAwaiter().GetResult();
     } 
+
+
   }
 }
