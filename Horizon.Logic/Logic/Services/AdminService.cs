@@ -1,4 +1,5 @@
 ﻿using Logic.Database;
+using Logic.Database.Repositories;
 using Logic.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace Logic.Services
         {
             this.unitOfWork = unitOfWork;
         }
+
+        List<IRepository> RepoList = new List<IRepository>();
 
         public Flight AddFlight(TimeSpan arrivalTime, DateTime arrivalDate, TimeSpan departureTime, DateTime departureDate, string destination, string departure, int aircraftId)
         {
@@ -84,6 +87,20 @@ namespace Logic.Services
             Passenger passenger = unitOfWork.Passengers.Get(passengerId);
 
             unitOfWork.Passengers.Remove(passenger);
+            unitOfWork.Commit();
+        }
+
+        public void EditCustomerBooking(int bookingId, int passengerId, int flightId, int seatClassId, int seatNumber, int baggageCount, int statusId)
+        {
+            Booking booking = unitOfWork.Bookings.Get(bookingId);
+
+            booking.PassengerId = passengerId;
+            booking.FlightId = flightId;
+            booking.SeatClassId = seatClassId;
+            booking.SeatNumber = seatNumber;
+            booking.BaggageNumber = baggageCount;
+            booking.StatusId = statusId;
+
             unitOfWork.Commit();
         }
     }
