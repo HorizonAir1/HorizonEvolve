@@ -8,7 +8,7 @@ namespace Logic.Repos
 {
     public class FlightRepository : Repository<Flight, int>, IFlightRepository
     {
-        public FlightRepository(DataSource context)
+        public FlightRepository(fli)
             : base(context)
         {
         }

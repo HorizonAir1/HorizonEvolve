@@ -1,25 +1,27 @@
 ﻿using Logic.Database;
 using Logic.Database.Repositories;
 using Database.Repositories;
+using Logic.Repos;
+using System.Collections.Generic;
 
 namespace Database
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private DataSource context;
+        private List<FlightRepository> flights = new List<FlightRepository>();
 
-        public UnitOfWork(DataSource context)
+        public UnitOfWork(FlightRepository flightRepository, PassengerRepository passengerRepository, BookingRepository bookingRepository)
         {
             Aircrafts = new AircraftRepository(context);
-            Bookings = new BookingRepository(context);
+            Bookings = new BookingRepository(bookingRepository);
             BookingStatuses = new BookingStatusRepository(context);
-            Flights = new FlightRepository(context);
+            Flights = new FlightRepository(,);
             Passengers = new PassengerRepository(context);
             Payments = new PaymentRepository(context);
             SeatClasses = new SeatClassRepository(context);
             SeatingCharts = new SeatingChartRepository(context);
 
-            this.context = context;
+            Flights = flight;
         }
 
         public IAircraftRepository Aircrafts { get; set; }
@@ -41,7 +43,7 @@ namespace Database
 
         public void Commit()
         {
-            context.SaveChanges();
+            flights.Add(Flights);
         }
     }
 }
