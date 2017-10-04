@@ -50,7 +50,6 @@
     <Compile Include="Database\Repositories\IRepository.cs" />
     <Compile Include="Database\Repositories\ISeatClassRepository.cs" />
     <Compile Include="Database\Repositories\ISeatingChartRepository.cs" />
-    <Compile Include="LogicServices.cs" />
     <Compile Include="Models\Aircraft.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -61,8 +60,9 @@
     <Compile Include="Models\SeatClass.cs" />
     <Compile Include="Models\SeatingChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AdminServices.cs" />
-    <Compile Include="Services\ClientServices.cs" />
+    <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\IAdminService.cs" />
     <Compile Include="Services\IClientService.cs" />
   </ItemGroup>
   <ItemGroup />

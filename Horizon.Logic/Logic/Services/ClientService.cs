@@ -8,11 +8,11 @@ using Logic.Database;
 
 namespace Logic.Services
 {
-    public class ClientServices : IClientService
+    public class ClientService : IClientService
     {
         private IUnitOfWork unitOfWork;
 
-        public ClientServices(IUnitOfWork unitOfWork)
+        public ClientService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
@@ -57,7 +57,7 @@ namespace Logic.Services
             return bookings;
         }
 
-        public void CancelFlight(int bookingId)
+        public void CancelBooking(int bookingId)
         {
             Booking booking = unitOfWork.Bookings.Get(bookingId);
 
@@ -82,7 +82,6 @@ namespace Logic.Services
 
             return seats;
         }
-
 
         #region OldCode
         //public List<Flight> GetFlights(Flight flight)

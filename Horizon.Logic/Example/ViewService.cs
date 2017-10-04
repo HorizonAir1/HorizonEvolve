@@ -13,12 +13,14 @@ namespace Example
     public class ViewService
     {
         IClientService clientService;
+        IAdminService adminService;
 
         public ViewService()
         {
             DataSource context = new DataSource();
             UnitOfWork unitOfWork = new UnitOfWork(context);
-            clientService = new ClientServices(unitOfWork);
+            clientService = new ClientService(unitOfWork);
+            adminService = new AdminService(unitOfWork);
         }
 
         public Flight GetFlightDetails(int flightId)

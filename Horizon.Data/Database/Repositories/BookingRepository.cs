@@ -12,6 +12,11 @@ namespace Database.Repositories
         {
         }
 
+        public IEnumerable<Booking> GetAllFutureBookings()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Booking> GetFutureBookingsByPassenger(int passengerId)
         {
             //TODO: Find the future booking for the passenger who has the passenger id passed in

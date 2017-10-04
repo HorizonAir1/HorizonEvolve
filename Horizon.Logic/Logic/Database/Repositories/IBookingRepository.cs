@@ -10,5 +10,8 @@ namespace Logic.Database.Repositories
     public interface IBookingRepository : IRepository<Booking, int>
     {
         IEnumerable<Booking> GetFutureBookingsByPassenger(int passengerId);
+
+        IEnumerable<Booking> GetAllFutureBookings();
     }
+
 }
