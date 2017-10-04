@@ -60,10 +60,17 @@ namespace LogicService.Controllers.Handler
       return _client.PostAsJsonAsync<T>(controllerString, obj).GetAwaiter().GetResult();
     }
 
+    public HttpResponseMessage PutResponse<T>(string controllerString, T obj)
+    {
+      return _client.PutAsJsonAsync<T>(controllerString, obj).GetAwaiter().GetResult();
+    }
+
     public HttpResponseMessage DeleteResponse(string controllerString)
     {
       return _client.DeleteAsync(controllerString).GetAwaiter().GetResult();
     } 
+
+
 
 
   }
