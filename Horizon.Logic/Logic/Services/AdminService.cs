@@ -39,16 +39,16 @@ namespace Logic.Services
 
         public Passenger CreatePassenger(string firstName, string middleName, string lastName, DateTime birthDate, string address, string phoneNumber, string email)
         {
-            Passenger passenger = new Passenger()
-            {
-                FirstName = firstName,
-                Middle = middleName,
-                LastName = lastName,
-                BirthDate = birthDate,
-                Address = address,
-                PhoneNumber = phoneNumber,
-                Email = email
-            };
+                Passenger passenger = new Passenger()
+                {
+                    FirstName = firstName,
+                    Middle = middleName,
+                    LastName = lastName,
+                    BirthDate = birthDate,
+                    Address = address,
+                    PhoneNumber = phoneNumber,
+                    Email = email
+                };
 
             unitOfWork.Commit();
             return passenger;
@@ -102,6 +102,14 @@ namespace Logic.Services
             booking.StatusId = statusId;
 
             unitOfWork.Commit();
+        }
+
+        public void CheckIfPassenger(string email, string firstName, string middleName, string lastName, DateTime birthDate, string address, string phoneNumber)
+        {
+            if (email == null)
+            {
+                CreatePassenger(firstName,middleName,lastName,birthDate,address,phoneNumber,email);
+            }
         }
     }
 }

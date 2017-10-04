@@ -16,5 +16,6 @@ namespace Logic.Services
         void EditAircraftInfo(int aircraftId, string producer, int modelNumber, int seatActual, int seatMax);
         void EditCustomerPersonalInfo(int passengerId, string firstName, string middleName, string lastName, DateTime birthDate, string address, string phoneNumber, string email);
         void EditCustomerBooking(int bookingId, int passengerId, int flightId, int seatClassId, int seatNumber, int baggageCount, int statusId);
+        void CheckIfPassenger(string email, string firstName, string middleName, string lastName, DateTime birthDate, string address, string phoneNumber);
     }
 }
