@@ -72,13 +72,16 @@ namespace Logic.Repos
         }
 
         #region ClientCode
-        public IEnumerable<Flight> GetAvailableFlightsWithDuration(string departLocation, string arrivalDestination, DateTime departDate, DateTime? returnDate = null)
+        public IEnumerable<Flight> GetAvailableFlightsWithDuration(string departLocation, string arrivalDestination, DateTime departureDate, DateTime arriveDate)
         {
             List<Flight> flights = new List<Flight>();
+            DateTime departDate = departureDate.Date;
+            DateTime arrivalDate = arriveDate.Date;
+            int numberOfdaysInFlight = (departDate - arrivalDate).Days;
 
             foreach (Flight fli in _flights)
             {
-                if (fli.Departure == departLocation && fli.Destination == arrivalDestination && fli.DepartDate >= departDate && fli.ArrivalDate <= returnDate)
+                if (fli.Departure == departLocation && fli.Destination == arrivalDestination)
                 {
                 }
             }
@@ -160,9 +163,9 @@ namespace Logic.Repos
             return availableSeats;
         }
 
-        public Passenger GetPassenger(int passengerId)
+        public Passenger GetPassenger(string email)
         {
-            Passenger passenger = _passengers.FirstOrDefault(p => p.Id == passengerId);
+            Passenger passenger = _passengers.FirstOrDefault(p => p.Email == email);
 
             if (passenger != null)
             {
@@ -264,12 +267,14 @@ namespace Logic.Repos
             }
         }
 
-        public void CheckIfPassenger(string email, string firstName, string middleName, string lastName, DateTime birthDate, string address, string phoneNumber)
+        public bool CheckIfPassengerExist(string email)
         {
-            if (email != null)
+            if (GetPassenger(email) == null)
             {
-                CreatePassenger(firstName, middleName, lastName, birthDate, address, phoneNumber, email);
+                return false;
             }
+
+            return true;
         }
         #endregion
     }
