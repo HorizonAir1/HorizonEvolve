@@ -1,4 +1,5 @@
-﻿using LogicService.Models;
+﻿using LogicService.Controllers.Handler;
+using LogicService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,15 @@ namespace LogicService.Controllers
 {
   public class FlightController : ApiController
   {
+    private DataAPIHandler _dah;
+    private Repos _repo;
+
+    public FlightController():base()
+    {
+      _dah = DataAPIHandler.Instance;
+      _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
+    }
+
     // GET: api/Flight
     public HttpResponseMessage Get()
     {//get all flights from repo

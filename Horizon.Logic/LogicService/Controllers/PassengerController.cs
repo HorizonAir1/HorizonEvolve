@@ -7,13 +7,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Logic.Repos;
 
 namespace LogicService.Controllers
 {
   [AllowAnonymous]
   public class PassengerController : ApiController
   {
-    private DataAPIHandler _dah = DataAPIHandler.Instance;
+    private DataAPIHandler _dah;
+    private Repos _repo;
+
+    public PassengerController():base()
+    {
+      _dah = DataAPIHandler.Instance;
+      _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
+    }
+
     // GET: api/Passenger
     public HttpResponseMessage Get(PassengerModel passenger)
     {
@@ -22,7 +31,6 @@ namespace LogicService.Controllers
         var res = _dah.GetResponse("Passenger/");
         _dah.Logout();
         return res;
-
       }
       return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
     }

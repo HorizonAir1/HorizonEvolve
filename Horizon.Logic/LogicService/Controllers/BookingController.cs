@@ -1,4 +1,5 @@
-﻿using LogicService.Models;
+﻿using LogicService.Controllers.Handler;
+using LogicService.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,15 @@ namespace LogicService.Controllers
   [AllowAnonymous]
   public class BookingController : ApiController
   {
-    private LogicHelper lh = LogicHelper.Instance;
- 
+    private DataAPIHandler _dah;
+    private Repos _repo;
+
+    public BookingController():base()
+    {
+      _dah = DataAPIHandler.Instance;
+      _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
+    }
+
     public HttpResponseMessage Get(string email)
     {//get all bookings for passenger from repo
 
