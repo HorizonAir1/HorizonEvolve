@@ -32,8 +32,8 @@ namespace LogicService.Controllers
     public HttpResponseMessage Get(string email)
     {//get all bookings for passenger from repo
       if (_repo.CheckIfPassengerExist(email))
-        return Request.CreateResponse<List<BookingModel>>(HttpStatusCode.OK, ModelConverter.BookToModelList()
-      return Request.CreateResponse<string>.
+        return Request.CreateResponse<List<BookingModel>>(HttpStatusCode.OK, ModelConverter.BookToModelList(_repo.GetAllPassengerBookings(email)));
+      return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "no such passenger");
     }
 
     
