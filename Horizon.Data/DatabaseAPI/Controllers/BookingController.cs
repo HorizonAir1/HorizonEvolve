@@ -13,6 +13,12 @@ namespace DatabaseAPI.Controllers
   {
     private FacadeHelper fh = FacadeHelper.Instance;
     // GET: api/Booking
+    public HttpResponseMessage Get()
+    {
+      var x = fh.GetAllBookings();
+      return Request.CreateResponse<List<BookingModel>>(HttpStatusCode.OK, x);
+    }
+
     public HttpResponseMessage Get(BookingModel book)
     {
             var x = fh.GetBooking(book);
