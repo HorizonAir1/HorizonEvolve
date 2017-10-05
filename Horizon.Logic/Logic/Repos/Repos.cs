@@ -118,14 +118,19 @@ namespace Logic.Repos
       }
     }
 
-    public IEnumerable<Booking> GetFutureBookings(int passengerId)
+    public IEnumerable<Booking> GetAllBookings(int bookingId)
     {
       List<Booking> bookings = new List<Booking>();
 
-      bookings = _bookings.Where(b => b.PassengerId == passengerId && b.Flight.DepartDate > DateTime.Now).ToList();
+            if (bookings != null)
+            {
+                bookings = _bookings.Where(b => b.Id == bookingId).ToList();
 
-      return bookings;
-    }
+                return bookings;
+            }
+
+            return null;
+        }
 
     public void CancelBooking(int bookingId)
     {
@@ -222,7 +227,7 @@ namespace Logic.Repos
       }
     }
 
-    public void RemoveClientFromFlight(int passengerId, int flightId) //TODO: come back to this
+    public void RemoveClientFromFlight(int passengerId, int flightId)
     {
       Booking booking = _bookings.FirstOrDefault(b => b.FlightId == flightId && b.PassengerId == passengerId);
 

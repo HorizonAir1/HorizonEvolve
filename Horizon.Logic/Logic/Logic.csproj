@@ -53,16 +53,7 @@
     <Compile Include="Models\SeatClass.cs" />
     <Compile Include="Models\SeatingChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repos\AircraftRepository.cs" />
-    <Compile Include="Repos\BookingRepository.cs" />
-    <Compile Include="Repos\BookingStatusRepository.cs" />
-    <Compile Include="Repos\FlightRepository.cs" />
-    <Compile Include="Repos\PassengerRepository.cs" />
-    <Compile Include="Repos\PaymentRepository.cs" />
     <Compile Include="Repos\Repos.cs" />
-    <Compile Include="Repos\Repository.cs" />
-    <Compile Include="Repos\SeatClassRepository.cs" />
-    <Compile Include="Repos\SeatingChartRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
