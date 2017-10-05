@@ -49,5 +49,15 @@ namespace LogicService.Models
         status_id = book.StatusId
       };
     }
+
+    public static List<BookingModel> BookToModelList(IEnumerable<Booking> bList)
+    {
+      List<BookingModel> mList = new List<BookingModel>();
+      foreach (var item in bList)
+      {
+        mList.Add(BookToModel(item));
+      }
+      return mList;
+    }
   }
 }
