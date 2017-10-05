@@ -8,7 +8,7 @@ namespace LogicService.Models
   public class BookingModel : PassengerModel
   {
     public int booking_id { get; set; }
-    public int passenger_email { get; set; }
+    public string passenger_email { get; set; }
     public int flight_id { get; set; }
     public int seatclass_id { get; set; }
     public int seat_number { get; set; }

@@ -35,5 +35,19 @@ namespace LogicService.Models
         PhoneNumber = pass.Tel_num
       };
     }
+
+    public static BookingModel BookToModel(Booking book)
+    {
+      return new BookingModel
+      {
+        passenger_email = book.Passenger.Email,
+        booking_id = book.Id,
+        flight_id = book.FlightId,
+        seatclass_id = book.SeatClassId,
+        seat_number = book.SeatNumber,
+        baggage_num = book.BaggageNumber,
+        status_id = book.StatusId
+      };
+    }
   }
 }
