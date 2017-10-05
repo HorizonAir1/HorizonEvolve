@@ -433,10 +433,6 @@
         <EntityType Name="SeatingChart">
           <Key>
             <PropertyRef Name="seat_id" />
-            <PropertyRef Name="section" />
-            <PropertyRef Name="seat" />
-            <PropertyRef Name="isTaken" />
-            <PropertyRef Name="flight_id" />
           </Key>
           <Property Name="seat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="section" Type="Int32" Nullable="false" />
