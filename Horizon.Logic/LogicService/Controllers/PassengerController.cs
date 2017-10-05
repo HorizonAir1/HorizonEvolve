@@ -59,6 +59,7 @@ namespace LogicService.Controllers
             _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), task);
             _dah.Logout();
             task.Wait();
+            //return task.Result;
             if (task.Result.IsSuccessStatusCode)
               return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
             else return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "failed db save");
@@ -77,29 +78,36 @@ namespace LogicService.Controllers
     // PUT: api/Passenger/5
     public HttpResponseMessage Put(PassengerModel passenger)
     {
-      //if (_dah.Login())
-      //{
-      //  var res = client.PutAsJsonAsync<PassengerModel>(ConfigurationManager.AppSettings["DataUri"] + "Passenger/", passenger).GetAwaiter().GetResult();
-      //  _dah.Logout();
-      //  return res;
+      try
+      {
+        if (!_repo.CheckIfPassengerExist(passenger.Email))
+        {
+          if (_dah.Login())
+          {
+            Task<HttpResponseMessage> task = _dah.PutTask<PassengerModel>("Passenger/", passenger);
+            _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), task);
+            _dah.Logout();
+            task.Wait();
 
-      //}
-      //return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
-      throw new NotImplementedException();
+            //return task.Result;
+            if (task.Result.IsSuccessStatusCode)
+              return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger updated");
+            else return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "failed db save");
+          }
+          return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
+
+        }
+        return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "email already taken");
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+      }
     }
 
     // DELETE: api/Passenger/5
     public HttpResponseMessage Delete(string email)
     {
-      //if (_dah.Login())
-      //{
-      //  var client = new HttpClient();
-      //  var res = client.DeleteAsync(ConfigurationManager.AppSettings["DataUri"] + "Passenger/" +email).GetAwaiter().GetResult();
-      //  _dah.Logout();
-      //  return res;
-
-      //}
-      //return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
 
       throw new NotImplementedException();
     }
