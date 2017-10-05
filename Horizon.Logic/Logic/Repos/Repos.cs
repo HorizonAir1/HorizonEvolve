@@ -121,6 +121,11 @@ namespace Logic.Repos
       }
     }
 
+    public List<Booking> GetAllBookings()
+    {
+      return _bookings;
+    }
+
     public IEnumerable<Booking> GetAllBookings(int bookingId)
     {
       List<Booking> bookings = new List<Booking>();

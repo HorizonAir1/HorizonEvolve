@@ -26,7 +26,7 @@ namespace LogicService.Controllers
 
     public HttpResponseMessage Get()
     {
-      throw new NotImplementedException();
+      _repo.GetAllBookings();
     }
 
     public HttpResponseMessage Get(string email)
