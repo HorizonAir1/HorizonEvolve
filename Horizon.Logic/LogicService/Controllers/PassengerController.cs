@@ -17,35 +17,56 @@ namespace LogicService.Controllers
     private DataAPIHandler _dah;
     private Repos _repo;
 
-    public PassengerController():base()
+    public PassengerController() : base()
     {
       _dah = DataAPIHandler.Instance;
+      _dah.Login();
       _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
+      _dah.Logout();
     }
 
     // GET: api/Passenger
-    public HttpResponseMessage Get(PassengerModel passenger)
+    public HttpResponseMessage Get(string email)
     {
-      if (_dah.Login())
+      try
       {
-        var res = _dah.GetResponse("Passenger/");
-        _dah.Logout();
-        return res;
+        var pass = ModelConverter.PassToModel(_repo.GetPassenger(email));
+        if (pass != null)
+        {
+          return Request.CreateResponse<PassengerModel>(HttpStatusCode.OK, pass);
+        }
+
+        return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "could not find passenger");
       }
-      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+      }
+      
     }
 
     // POST: api/Passenger
     public HttpResponseMessage Post(PassengerModel passenger)
     {
-      if (_dah.Login())
+      try
       {
-        var res = _dah.PostResponse<PassengerModel>("Passenger/", passenger);
-        _dah.Logout();
-        return res;
+        if (!_repo.CheckIfPassenger(passenger.Email))
+        {
+          if (_dah.Login())
+          {
+            _repo.CreatePassenger(ModelConverter.ModelToPass(passenger), _dah.PostTask<PassengerModel>("Passenger/", passenger));
+            _dah.Logout();
+            return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
+          }
+          return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
 
+        }
+        return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "email already taken");
       }
-      return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+      }     
     }
 
     // PUT: api/Passenger/5
@@ -76,6 +97,6 @@ namespace LogicService.Controllers
       //return Request.CreateResponse<string>(HttpStatusCode.Unauthorized, "Login Failed");
 
       throw new NotImplementedException();
-    } 
+    }
   }
 }

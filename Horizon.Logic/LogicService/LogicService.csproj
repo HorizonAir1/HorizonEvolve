@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="LogicHelper.cs" />
     <Compile Include="Models\BookingModel.cs" />
+    <Compile Include="Models\ModelConverter.cs" />
     <Compile Include="Models\FlightModel.cs" />
     <Compile Include="Models\PassengerModel.cs" />
     <Compile Include="Models\Search.cs" />
