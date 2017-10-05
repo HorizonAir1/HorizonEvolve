@@ -26,13 +26,14 @@ namespace LogicService.Controllers
 
     public HttpResponseMessage Get()
     {
-      _repo.GetAllBookings();
+      return Request.CreateResponse<List<BookingModel>>(HttpStatusCode.OK, ModelConverter.BookToModelList(_repo.GetAllBookings()));
     }
 
     public HttpResponseMessage Get(string email)
     {//get all bookings for passenger from repo
-
-      throw new NotImplementedException();
+      if (_repo.CheckIfPassengerExist(email))
+        return Request.CreateResponse<List<BookingModel>>(HttpStatusCode.OK, ModelConverter.BookToModelList()
+      return Request.CreateResponse<string>.
     }
 
     

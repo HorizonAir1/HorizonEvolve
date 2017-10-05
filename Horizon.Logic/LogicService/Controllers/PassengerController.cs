@@ -80,7 +80,7 @@ namespace LogicService.Controllers
     {
       try
       {
-        if (!_repo.CheckIfPassengerExist(passenger.Email))
+        if (_repo.CheckIfPassengerExist(passenger.Email))
         {
           if (_dah.Login())
           {

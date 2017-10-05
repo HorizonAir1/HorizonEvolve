@@ -126,7 +126,7 @@ namespace Logic.Repos
       return _bookings;
     }
 
-    public IEnumerable<Booking> GetAllBookings(int bookingId)
+    public IEnumerable<Booking> GetAllPassengerBookings(string email)
     {
       List<Booking> bookings = new List<Booking>();
 
