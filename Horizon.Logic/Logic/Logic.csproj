@@ -63,10 +63,6 @@
     <Compile Include="Repos\Repository.cs" />
     <Compile Include="Repos\SeatClassRepository.cs" />
     <Compile Include="Repos\SeatingChartRepository.cs" />
-    <Compile Include="Services\AdminService.cs" />
-    <Compile Include="Services\ClientService.cs" />
-    <Compile Include="Services\IAdminService.cs" />
-    <Compile Include="Services\IClientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
