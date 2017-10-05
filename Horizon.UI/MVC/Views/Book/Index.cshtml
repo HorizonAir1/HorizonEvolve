@@ -12,8 +12,8 @@
 </head>
 <body>
     <div>
-        <p>From: <input type="text" ng-model="fromPlanet" placeholder="Going To"/></p>
-        <p>To: <input type="text" ng-model="ToPlanet" placeholder="Returning To"/></p>
+        <p>From: <input type="text" ng-model="fromPlanet" placeholder="Going To"/> Time: <input id="date" type="datetime-local"></p>
+        <p>To: <input type="text" ng-model="ToPlanet" placeholder="Returning To"/> Time: <input id="date" type="datetime-local"></p>
 
         <h5>Going to: {{fromPlanet}}</h5>
         <div ng-if="fromPlanet=='mars'" id="mars"></div>
