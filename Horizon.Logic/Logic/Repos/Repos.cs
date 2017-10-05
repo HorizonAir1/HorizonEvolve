@@ -1,4 +1,5 @@
 ﻿using Logic.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +23,52 @@ namespace Logic.Repos
 
     private static Repos _instance;
 
-    private Repos( List<Passenger> passengers, List<Flight> flights, List<Booking> bookings)
+    private Repos(List<Passenger> passengers, List<Flight> flights, List<Booking> bookings)
     {
-      _passengers=passengers;
-      _flights=flights;
+      _passengers = passengers;
+      _flights = flights;
       _bookings = bookings;
     }
 
     public static Repos Instance(Task<HttpResponseMessage> getPassengers, Task<HttpResponseMessage> getFlights, Task<HttpResponseMessage> getBookings)
     {
-
       if (_instance == null)
+      {
+        getFlights.Start();
+        getBookings.Start();
+
+        var passengers = getPassengers.GetAwaiter().GetResult();
+        List<Passenger> p;
+        if (passengers.IsSuccessStatusCode)
         {
-          _instance = new Repos();
+          var r = passengers.Content.ReadAsStringAsync().Result;
+          p = JsonConvert.DeserializeObject<List<Passenger>>(r);
         }
-        return _instance;
+        else return null;
+
+        getFlights.Wait();
+        var flights = getFlights.Result;
+        List<Flight> f;
+        if (flights.IsSuccessStatusCode)
+        {
+          var r = passengers.Content.ReadAsStringAsync().Result;
+          f = JsonConvert.DeserializeObject<List<Flight>>(r);
+        }
+        else return null;
+
+        getBookings.Wait();
+        var bookings = getBookings.Result;
+        List<Booking> b;
+        if (passengers.IsSuccessStatusCode)
+        {
+          var r = passengers.Content.ReadAsStringAsync().Result;
+          b = JsonConvert.DeserializeObject<List<Booking>>(r);
+        }
+        else return null;
+
+        _instance = new Repos(p, f, b);
+      }
+      return _instance;
     }
 
     #region ClientCode
