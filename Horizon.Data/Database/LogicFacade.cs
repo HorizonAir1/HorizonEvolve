@@ -69,6 +69,10 @@ namespace Database
             return Models.Flight.GetAllFlights(startLoc, destLoc, startSearch, endSearch, numPassengers);
         }
         //BOOKING -- DONE
+        public IEnumerable<DataAccess.Booking> GetAllBooking()
+        {
+            return Models.Booking.GetAllBookings();
+        }
         public DataAccess.Booking getBook(int y)
         {
             return Models.Booking.getBook(y);

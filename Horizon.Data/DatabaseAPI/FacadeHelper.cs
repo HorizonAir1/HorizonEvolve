@@ -101,6 +101,26 @@ namespace DatabaseAPI
         {
             return lf.GetAllFlights(s.StartLoc,s.EndLoc,s.StartTime,s.EndTime,s.numPass);
         }
+
+        public List<BookingModel> GetAllBookings()
+        {
+            List<BookingModel> bookings = new List<BookingModel>();
+            foreach (var x in lf.GetAllBooking())
+            {
+              BookingModel book = new BookingModel()
+              {
+                baggage_num = x.baggage_num,
+                booking_id = x.booking_id,
+                flight_id = x.flight_id,
+                seatclass_id = x.seatclass_id,
+                seat_number = x.seat_number,
+                status_id = x.status_id,
+                passenger_email = x.Passenger.email
+              };
+                
+            }
+            return bookings;
+        }
         public BookingModel GetBooking(BookingModel book)
         {
             var x = lf.getBook(book.booking_id);

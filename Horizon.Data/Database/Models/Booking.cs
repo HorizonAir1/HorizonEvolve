@@ -49,8 +49,16 @@ namespace Database.Models
 
         }
 
+    public static IEnumerable<DataAccess.Booking> GetAllBookings()
+    {
+      List<DataAccess.Booking> bookings = new List<DataAccess.Booking>();
+      using (var db = new HorizonData())
+      {
+        return db.Bookings;
 
-
-
+      }
     }
+
+
+  }
 }
