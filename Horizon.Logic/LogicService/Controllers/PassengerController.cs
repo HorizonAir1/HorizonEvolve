@@ -50,11 +50,11 @@ namespace LogicService.Controllers
     {
       try
       {
-        if (!_repo.CheckIfPassenger(passenger.Email))
+        if (!_repo.CheckIfPassengerExist(passenger.Email))
         {
           if (_dah.Login())
           {
-            _repo.CreatePassenger(ModelConverter.ModelToPass(passenger), _dah.PostTask<PassengerModel>("Passenger/", passenger));
+            _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), _dah.PostTask<PassengerModel>("Passenger/", passenger));
             _dah.Logout();
             return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
           }
