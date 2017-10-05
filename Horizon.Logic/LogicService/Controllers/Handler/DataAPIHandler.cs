@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace LogicService.Controllers.Handler
@@ -68,9 +69,27 @@ namespace LogicService.Controllers.Handler
     public HttpResponseMessage DeleteResponse(string controllerString)
     {
       return _client.DeleteAsync(controllerString).GetAwaiter().GetResult();
-    } 
+    }
 
+    public Task<HttpResponseMessage> GetTask(string controllerString)
+    {
+      return _client.GetAsync(controllerString);
+    }
 
+    public Task<HttpResponseMessage> PostTask<T>(string controllerString, T obj)
+    {
+      return _client.PostAsJsonAsync<T>(controllerString, obj);
+    }
+
+    public Task<HttpResponseMessage> PutTask<T>(string controllerString, T obj)
+    {
+      return _client.PutAsJsonAsync<T>(controllerString, obj);
+    }
+
+    public Task<HttpResponseMessage> DeleteTask(string controllerString)
+    {
+      return _client.DeleteAsync(controllerString);
+    }
 
 
   }
