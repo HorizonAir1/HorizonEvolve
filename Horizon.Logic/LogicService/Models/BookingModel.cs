@@ -14,5 +14,6 @@ namespace LogicService.Models
     public int seat_number { get; set; }
     public int baggage_num { get; set; }
     public int status_id { get; set; }
+    public PassengerModel passenger { get; set; }
   }
 }

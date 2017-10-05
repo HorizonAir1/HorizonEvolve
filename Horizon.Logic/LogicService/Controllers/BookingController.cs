@@ -40,11 +40,31 @@ namespace LogicService.Controllers
 
     public HttpResponseMessage Post(BookingModel booking)
     {//create new booking for passenger
-      //check repo(logic) to see if passenger can book
+      try
+      {
+        if (!_repo.CheckIfPassengerExist(booking.Email))
+        {
+          _repo.CreatePassenger<PassengerModel>()
+        }
+          if (_dah.Login())
+          {
+            Task<HttpResponseMessage> task = _dah.PostTask<PassengerModel>("Passenger/", passenger);
+            _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), task);
+            _dah.Logout();
+            task.Wait();
+            //return task.Result;
+            if (task.Result.IsSuccessStatusCode)
+              return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
+            else return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "failed db save");
+          }
+          return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
 
-      //create new booking and save to both repo and database at the same time
-
-      throw new NotImplementedException();
+        
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+      }
     }
 
     // PUT: api/Booking/5
