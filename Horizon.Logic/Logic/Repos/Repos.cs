@@ -128,16 +128,8 @@ namespace Logic.Repos
 
     public IEnumerable<Booking> GetAllPassengerBookings(string email)
     {
-      List<Booking> bookings = new List<Booking>();
-
-      if (bookings != null)
-      {
-        bookings = _bookings.Where(b => b.Id == bookingId).ToList();
-
-        return bookings;
-      }
-
-      return null;
+      List<Booking> bookings = bookings = _bookings.Where(b => b.Passenger.Email == email).ToList();
+      return bookings;
     }
 
     public void CancelBooking(int bookingId)
