@@ -99,7 +99,27 @@ namespace LogicService.Controllers
     // DELETE: api/Booking/5
     public HttpResponseMessage Delete(int bookingid)
     {//remove booking for passenger (admin)
-            
+      try
+      {
+        if (_dah.Login())
+        {
+          Booking booking= GetBooking(bookingid);
+          if (booking!=null)
+          {
+            Task<HttpResponseMessage> deleteBooking = _dah.DeleteTask("Booking/" +bookingid.ToString() );
+            _repo.EditCustomerBooking(booking, deleteBooking);
+            deleteBooking.Wait();
+            _dah.Logout();
+            return deleteBooking.Result;
+          }
+          return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "no such Booking");
+        }
+        return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+      }
     }
   }
 }

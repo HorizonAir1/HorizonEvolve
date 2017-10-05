@@ -241,7 +241,8 @@ namespace Logic.Repos
 
     public void RemoveClientFromFlight<T>(Booking book, Task<T> task)
     {
-      Booking booking = _bookings.FirstOrDefault(b => b.FlightId == flightId && b.PassengerId == passengerId);
+      task.Start();
+      Booking booking = _bookings.FirstOrDefault(b => b.FlightId == book.FlightId && b.PassengerId == book.Passenger.Id);
 
       if (booking != null)
       {
