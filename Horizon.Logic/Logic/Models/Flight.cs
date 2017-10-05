@@ -10,7 +10,7 @@ namespace Logic.Models
     {
         //public int FlightId { get; set; }
         public TimeSpan ArrivalTime { get; set; }
-        public DateTime ArrivalDate { get; set; }
+        public DateTime? ArrivalDate { get; set; }
         public TimeSpan DepartTime { get; set; }
         public DateTime DepartDate { get; set; }
         public string Destination { get; set; }

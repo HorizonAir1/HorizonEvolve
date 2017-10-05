@@ -66,6 +66,7 @@
     <Compile Include="Repos\FlightRepository.cs" />
     <Compile Include="Repos\PassengerRepository.cs" />
     <Compile Include="Repos\PaymentRepository.cs" />
+    <Compile Include="Repos\Repos.cs" />
     <Compile Include="Repos\Repository.cs" />
     <Compile Include="Repos\SeatClassRepository.cs" />
     <Compile Include="Repos\SeatingChartRepository.cs" />

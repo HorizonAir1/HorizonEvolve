@@ -18,8 +18,6 @@ namespace Logic.Services
             this.unitOfWork = unitOfWork;
         }
 
-        List<IRepository> RepoList = new List<IRepository>();
-
         public Flight AddFlight(TimeSpan arrivalTime, DateTime arrivalDate, TimeSpan departureTime, DateTime departureDate, string destination, string departure, int aircraftId)
         {
             Flight flight = new Flight()

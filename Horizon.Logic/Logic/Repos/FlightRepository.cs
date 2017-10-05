@@ -8,8 +8,8 @@ namespace Logic.Repos
 {
     public class FlightRepository : Repository<Flight, int>, IFlightRepository
     {
-        public FlightRepository(fli)
-            : base(context)
+        public FlightRepository()
+            : base()
         {
         }
 

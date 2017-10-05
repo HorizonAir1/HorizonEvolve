@@ -9,7 +9,7 @@ namespace Logic
     {
         private List<FlightRepository> flights = new List<FlightRepository>();
 
-        public UnitOfWork(FlightRepository flightRepository, PassengerRepository passengerRepository, BookingRepository bookingRepository)
+        public UnitOfWork()
         {
             Aircrafts = new AircraftRepository(context);
             Bookings = new BookingRepository(bookingRepository);

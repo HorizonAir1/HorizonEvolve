@@ -7,8 +7,8 @@ namespace Logic.Repos
 {
     public class BookingRepository : Repository<Booking, int>, IBookingRepository
     {
-        public BookingRepository(DataSource context)
-            : base(context)
+        public BookingRepository()
+            : base()
         {
         }
 

@@ -1,7 +1,6 @@
 ﻿using Database.Repositories;
 using Logic.Database;
 using Logic.Database.Repositories;
-using Logic.Repos;
 
 namespace Database
 {
