@@ -21,6 +21,122 @@
 
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 
+
+
+
+/*  
+    
+    Code found at https://codepen.io/chinchang/pen/ygHBc?q=planet&limit=all&type=type-pens
+
+*/
+
+#earth {
+    background-image: url('https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTQqoB4xBnIkmUg5pxDyYW2h0Q1pRTsbQBOfhg-E-y4iLFicsyi');
+    width: 70px;
+    height: 70px;
+    /* a black shadow from left and white from right */
+    box-shadow: inset 16px 0 40px 3px rgba(0,0,0,0.9), inset -3px 0 5px 2px rgba(255,255,255,0.16);
+    background-size: 190px;
+    margin: 80px auto;
+    border-radius: 50%;
+    position: relative;
+    animation-name: move,scale,rotate;
+    animation-duration: 4s,4s,4s;
+    animation-iteration-count: infinite,infinite,infinite;
+    animation-timing-function: ease-in-out,linear,linear;
+}
+#moon {
+    background-image: url('https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA12803_ip.jpg');
+    width: 70px;
+    height: 70px;
+    /* a black shadow from left and white from right */
+    box-shadow: inset 16px 0 40px 3px rgba(0,0,0,0.9), inset -3px 0 5px 2px rgba(255,255,255,0.16);
+    background-size: 190px;
+    margin: 80px auto;
+    border-radius: 50%;
+    position: relative;
+    animation-name: move,scale,rotate;
+    animation-duration: 4s,4s,4s;
+    animation-iteration-count: infinite,infinite,infinite;
+    animation-timing-function: ease-in-out,linear,linear;
+}
+#mars {
+    background-image: url('https://3dexport.com/items/2015/02/20/385337/100200/mars_texture_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_1258981_o.png');
+    width: 70px;
+    height: 70px;
+    /* a black shadow from left and white from right */
+    box-shadow: inset 16px 0 40px 3px rgba(0,0,0,0.9), inset -3px 0 5px 2px rgba(255,255,255,0.16);
+    background-size: 190px;
+    margin: 80px auto;
+    border-radius: 50%;
+    position: relative;
+    animation-name: move,scale,rotate;
+    animation-duration: 4s,4s,4s;
+    animation-iteration-count: infinite,infinite,infinite;
+    animation-timing-function: ease-in-out,linear,linear;
+}
+@keyframes move {
+    0% {
+        left: 200px;
+    }
+
+    50% {
+        left: -200px;
+    }
+
+    100% {
+        left: 200px;
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    32% {
+        transform: scale(1);
+        animation-timing-function: ease-in;
+    }
+
+    70% {
+        transform: scale(1);
+        animation-timing-function: ease-in;
+    }
+
+    75% {
+        transform: scale(1);
+        animation-timing-function: ease-in-out;
+    }
+
+    86% {
+        transform: scale(1);
+    }
+
+    98% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: 190px;
+    }
+}
+
+/*  
+    
+    end of code block
+
+*/
 article,
 aside,
 details,
@@ -6813,4 +6929,153 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgba(33, 33, 33, 0.9);
+    color: #ffffff;
+    display: block;
+    font: 14px/1.3 Arial,sans-serif;
+    height: 50px;
+    position: relative;
+    z-index: 5;
+}
+
+h2 {
+    margin-top: 30px;
+    text-align: center;
+}
+
+header h2 {
+    font-size: 22px;
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 80%;
+    text-align: center;
+}
+
+header a, a:visited {
+    text-decoration: none;
+    color: #fcfcfc;
+}
+
+@keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+@-webkit-keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+@-moz-keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+@-ms-keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+@keyframes move-clouds-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 10000px 0;
+    }
+}
+
+@-webkit-keyframes move-clouds-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 10000px 0;
+    }
+}
+
+@-moz-keyframes move-clouds-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 10000px 0;
+    }
+}
+
+@-ms-keyframes move-clouds-back {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: 10000px 0;
+    }
+}
+
+.stars, .twinkling, .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    z-index: 0;
+}
+
+.twinkling {
+    background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+    z-index: 1;
+    -moz-animation: move-twink-back 200s linear infinite;
+    -ms-animation: move-twink-back 200s linear infinite;
+    -o-animation: move-twink-back 200s linear infinite;
+    -webkit-animation: move-twink-back 200s linear infinite;
+    animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+    background: transparent url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat top center;
+    z-index: 3;
+    -moz-animation: move-clouds-back 200s linear infinite;
+    -ms-animation: move-clouds-back 200s linear infinite;
+    -o-animation: move-clouds-back 200s linear infinite;
+    -webkit-animation: move-clouds-back 200s linear infinite;
+    animation: move-clouds-back 200s linear infinite;
 }

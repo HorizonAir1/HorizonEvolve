@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>GetFlights</h2>
+
+<!doctype html>
+<html ng-app>
+<head>
+    
+</head>
+<body>
+    <div>
+        <p>From: <input type="text" ng-model="fromPlanet" placeholder="Going To"/></p>
+        <p>To: <input type="text" ng-model="ToPlanet" placeholder="Returning To"/></p>
+
+        <h5>Going to: {{fromPlanet}}</h5>
+        <div ng-if="fromPlanet=='mars'" id="mars"></div>
+        <div ng-if="fromPlanet=='earth'" id="earth"></div>
+        <div ng-if="fromPlanet=='moon'" id="moon"></div>
+        
+        <h5>Returning to: {{ToPlanet}}</h5>
+        <div ng-if="ToPlanet=='mars'" id="mars"></div>
+        <div ng-if="ToPlanet=='earth'" id="earth"></div>
+        <div ng-if="ToPlanet=='moon'" id="moon"></div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+<script src="~/Scripts/Planet.js"></script>
+</html>
