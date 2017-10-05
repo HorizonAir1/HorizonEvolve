@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Logic.Repos;
+using System.Threading.Tasks;
 
 namespace LogicService.Controllers
 {
@@ -54,9 +55,13 @@ namespace LogicService.Controllers
         {
           if (_dah.Login())
           {
-            _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), _dah.PostTask<PassengerModel>("Passenger/", passenger));
+            Task<HttpResponseMessage> task = _dah.PostTask<PassengerModel>("Passenger/", passenger);
+            _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), task);
             _dah.Logout();
-            return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
+            task.Wait();
+            if (task.Result.IsSuccessStatusCode)
+              return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
+            else return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "failed db save");
           }
           return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
 

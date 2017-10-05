@@ -212,9 +212,9 @@ namespace Logic.Repos
       _passengers.Add(passenger);
     }
 
-    public void EditCustomerPersonalInfo(int passengerId, string firstName, string middleName, string lastName, DateTime birthDate, string address, string phoneNumber, string email)
+    public void EditCustomerPersonalInfo<T>(Passenger pass, Task<T> task)
     {
-      Passenger passenger = _passengers.FirstOrDefault(p => p.Id == passengerId);
+      Passenger passenger = _passengers.FirstOrDefault(p => p.Email == pass.Email);
 
       if (passenger != null)
       {
