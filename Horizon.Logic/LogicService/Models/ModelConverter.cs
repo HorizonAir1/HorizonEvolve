@@ -59,5 +59,13 @@ namespace LogicService.Models
       }
       return mList;
     }
+
+    public static Booking ModelToBook(BookingModel bModel, int passengerId)
+    {
+      return new Booking
+      {
+        PassengerId = passengerId
+      };
+    }
   }
 }

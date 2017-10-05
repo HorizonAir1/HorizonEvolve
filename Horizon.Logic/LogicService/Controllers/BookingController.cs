@@ -1,4 +1,5 @@
-﻿using Logic.Repos;
+﻿using Logic.Models;
+using Logic.Repos;
 using LogicService.Controllers.Handler;
 using LogicService.Models;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace LogicService.Controllers
@@ -36,30 +38,32 @@ namespace LogicService.Controllers
       return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "no such passenger");
     }
 
-    
-
     public HttpResponseMessage Post(BookingModel booking)
     {//create new booking for passenger
       try
       {
-        if (!_repo.CheckIfPassengerExist(booking.Email))
+        if (_dah.Login())
         {
-          _repo.CreatePassenger<PassengerModel>()
-        }
-          if (_dah.Login())
+          Passenger p = _repo.GetPassenger(booking.Email);
+          if (p!=null)
           {
-            Task<HttpResponseMessage> task = _dah.PostTask<PassengerModel>("Passenger/", passenger);
-            _repo.CreatePassenger<HttpResponseMessage>(ModelConverter.ModelToPass(passenger), task);
-            _dah.Logout();
-            task.Wait();
-            //return task.Result;
-            if (task.Result.IsSuccessStatusCode)
-              return Request.CreateResponse<string>(HttpStatusCode.OK, "passenger created");
-            else return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "failed db save");
+           
+            Task<HttpResponseMessage> createTask = _dah.PostTask<PassengerModel>("Passenger/", booking.passenger);
+            _repo.CreatePassenger<HttpResponseMessage>(p, createTask);
+            createTask.Wait();
+            if (!createTask.Result.IsSuccessStatusCode)
+            {
+              _dah.Logout();
+              return createTask.Result;
+            }
           }
-          return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
 
-        
+          Task<HttpResponseMessage> createBooking = _dah.PostTask<BookingModel>("Booking/", booking);
+          _repo.CreateBooking(booking, createBooking);
+          createBooking.Wait();
+          return createBooking.Result;
+        }
+        return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
       }
       catch (Exception e)
       {
@@ -69,23 +73,33 @@ namespace LogicService.Controllers
 
     // PUT: api/Booking/5
     public HttpResponseMessage Put(BookingModel booking)
-    {//update booking for passenger
-      //check repo(logic) to see if passenger has booking
-
-      //update repo and database at the same time
-
-
-      throw new NotImplementedException();
+    {//update booking for passenger use for cancel
+      try
+      {
+        if (_dah.Login())
+        {
+          if (_repo.CheckIfPassengerExist(booking.Email) && _repo.CheckIfBookingExist(booking.booking_id))
+          {
+            Task<HttpResponseMessage> editBooking = _dah.PutTask<BookingModel>("Booking/", booking);
+            _repo.EditCustomerBooking(ModelConverter.ModelToBook(booking,_repo.GetPassenger(booking.Email).Id), editBooking);
+            editBooking.Wait();
+            _dah.Logout();
+            return editBooking.Result;
+          }
+          return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "no such Booking");
+        }
+        return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
+      }
+      catch (Exception e)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+      }
     }
 
     // DELETE: api/Booking/5
     public HttpResponseMessage Delete(int bookingid)
-    {//cancel booking for passenger
-      //check repo(logic) to see if passenger has booking
-
-      //delete from repo and database at the same time
-
-      throw new NotImplementedException();
+    {//remove booking for passenger (admin)
+            
     }
   }
 }

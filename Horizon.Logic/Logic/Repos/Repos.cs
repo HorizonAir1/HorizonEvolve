@@ -239,7 +239,7 @@ namespace Logic.Repos
       }
     }
 
-    public void RemoveClientFromFlight(int passengerId, int flightId)
+    public void RemoveClientFromFlight<T>(Booking book, Task<T> task)
     {
       Booking booking = _bookings.FirstOrDefault(b => b.FlightId == flightId && b.PassengerId == passengerId);
 
@@ -249,18 +249,19 @@ namespace Logic.Repos
       }
     }
 
-    public void EditCustomerBooking(int bookingId, int passengerId, int flightId, int seatClassId, int seatNumber, int baggageCount, int statusId)
+    public void EditCustomerBooking<T>(Booking book, Task<T> task)
     {
-      Booking booking = _bookings.FirstOrDefault(b => b.PassengerId == passengerId);
+      task.Start();
+      Booking booking = _bookings.FirstOrDefault(b => b.Id== book.Id);
 
       if (booking != null)
       {
-        booking.PassengerId = passengerId;
-        booking.FlightId = flightId;
-        booking.SeatClassId = seatClassId;
-        booking.SeatNumber = seatNumber;
-        booking.BaggageNumber = baggageCount;
-        booking.StatusId = statusId;
+        booking.PassengerId = book.PassengerId;
+        booking.FlightId = book.FlightId;
+        booking.SeatClassId = book.SeatClassId;
+        booking.SeatNumber = book.SeatNumber;
+        booking.BaggageNumber = book.BaggageNumber;
+        booking.StatusId = book.StatusId;
       }
     }
 
