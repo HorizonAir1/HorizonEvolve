@@ -24,11 +24,18 @@ namespace LogicService.Controllers
       _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
     }
 
+    public HttpResponseMessage Get()
+    {
+      throw new NotImplementedException();
+    }
+
     public HttpResponseMessage Get(string email)
     {//get all bookings for passenger from repo
 
       throw new NotImplementedException();
     }
+
+    
 
     public HttpResponseMessage Post(BookingModel booking)
     {//create new booking for passenger
