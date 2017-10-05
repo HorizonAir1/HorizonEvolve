@@ -40,16 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\IUnitOfWork.cs" />
-    <Compile Include="Database\Repositories\IAircraftRepository.cs" />
-    <Compile Include="Database\Repositories\IBookingRepository.cs" />
-    <Compile Include="Database\Repositories\IBookingStatusRepository.cs" />
-    <Compile Include="Database\Repositories\IFlightRepository.cs" />
-    <Compile Include="Database\Repositories\IPassengerRepository.cs" />
-    <Compile Include="Database\Repositories\IPaymentRepository.cs" />
-    <Compile Include="Database\Repositories\IRepository.cs" />
-    <Compile Include="Database\Repositories\ISeatClassRepository.cs" />
-    <Compile Include="Database\Repositories\ISeatingChartRepository.cs" />
     <Compile Include="Models\Aircraft.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -74,7 +64,6 @@
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\IAdminService.cs" />
     <Compile Include="Services\IClientService.cs" />
-    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
