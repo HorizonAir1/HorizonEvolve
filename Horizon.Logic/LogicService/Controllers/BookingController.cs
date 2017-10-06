@@ -58,7 +58,7 @@ namespace LogicService.Controllers
             }
           }
           Task<HttpResponseMessage> createBooking = _dah.PostTask<BookingModel>("Booking/", booking);
-          _repo.CreateBooking(booking, createBooking);
+          _repo.CreateBooking(ModelConverter.ModelToBook(booking, p.Id), createBooking);
           createBooking.Wait();
           return createBooking.Result;
         }
@@ -102,7 +102,7 @@ namespace LogicService.Controllers
       {
         if (_dah.Login())
         {
-          Booking booking= GetBooking(bookingid);
+          Booking booking= _repo.GetBooking(bookingid);
           if (booking!=null)
           {
             Task<HttpResponseMessage> deleteBooking = _dah.DeleteTask("Booking/" +bookingid.ToString() );

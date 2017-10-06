@@ -335,9 +335,9 @@ namespace Logic.Repos
             return true;
         }
 
-        public bool CheckIfBookingExist(int passengerId, int flightId)
+        public bool CheckIfBookingExist(int bookingid)
         {
-            if (GetBooking(passengerId) == null)
+            if (GetBooking(bookingid) == null)
             {
                 return false;
             }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace LogicService.Controllers
@@ -24,7 +25,7 @@ namespace LogicService.Controllers
 
     public HttpResponseMessage Get()
     {//get all flights from repo
-      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, _repo.GetAllFlights());
+      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, ModelConverter.FlightToModelList(_repo.GetAllFlights()));
     }
 
     public HttpResponseMessage Get(Search search)
@@ -39,8 +40,13 @@ namespace LogicService.Controllers
     {//create a flight 
       if (_dah.Login())
       {
-        _repo.AddFlight()
+        Flight f = ModelConverter.ModelToFlight(flight);
+        Task<HttpResponseMessage> addtask = _dah.PostTask<FlightModel>("Flight/", flight);
+        _repo.AddFlight<HttpResponseMessage>(ModelConverter.ModelToFlight(flight), addtask);
+        addtask.Wait();
+        return addtask.Result;
       }
+      return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "logic->data fail");
     }
 
     // PUT: api/Flight/5
