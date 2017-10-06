@@ -72,7 +72,7 @@ namespace Logic.Repos
     }
 
     #region ClientCode
-    public IEnumerable<Flight> GetAvailableFlightsWithDuration(string departLocation, string arrivalDestination, DateTime departureDate, DateTime arriveDate)
+    public List<Flight> GetAvailableFlightsWithDuration(string departLocation, string arrivalDestination, DateTime departureDate, DateTime arriveDate)
     {
       List<Flight> flights = new List<Flight>();
       DateTime departDate = departureDate.Date;

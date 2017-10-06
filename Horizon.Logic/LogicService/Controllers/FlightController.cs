@@ -1,4 +1,5 @@
-﻿using Logic.Repos;
+﻿using Logic.Models;
+using Logic.Repos;
 using LogicService.Controllers.Handler;
 using LogicService.Models;
 using System;
@@ -21,17 +22,17 @@ namespace LogicService.Controllers
       _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
     }
 
-    // GET: api/Flight
     public HttpResponseMessage Get()
     {//get all flights from repo
-      throw new NotImplementedException();
+      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, _repo.GetAllFlights());
     }
 
-    // GET: api/Flight/5
-    public HttpResponseMessage Get(string email)
-    {// get all flights for passenger from repo
-      throw new NotImplementedException();
+    public HttpResponseMessage Get(Search search)
+    {//get all flights within search
+      List<Flight> flights = _repo.GetAvailableFlightsWithDuration(search.StartLoc, search.EndLoc, search.StartTime, search.EndTime);
+      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, ModelConverter.FlightToModelList(flights));
     }
+
 
     // POST: api/Flight
     public HttpResponseMessage Post(FlightModel flight)
