@@ -67,5 +67,46 @@ namespace LogicService.Models
         PassengerId = passengerId
       };
     }
+
+    public static Flight ModelToFlight(FlightModel flight)
+    {
+      return new Flight()
+      {
+        FlightId = flight.Flight_id,
+        ArrivalTime = flight.Arrival_time,
+        ArrivalDate = flight.Arrival_date,
+        DepartTime = flight.Depart_time,
+        DepartDate = flight.Depart_date,
+        Destination = flight.Destination,
+        Departure = flight.Departure,
+        AircraftId = flight.Aircraft_id
+      };
+    }
+
+    public static FlightModel FlightToModel(Flight flight)
+    {
+      return new FlightModel()
+      {
+        Flight_id = flight.FlightId,
+        Arrival_time = flight.ArrivalTime,
+        Arrival_date = flight.ArrivalDate,
+        Depart_time = flight.DepartTime,
+        Depart_date = flight.DepartDate,
+        Destination = flight.Destination,
+        Departure = flight.Departure,
+        Aircraft_id = flight.AircraftId
+      };
+    }
+
+    public static List<FlightModel> FlightToModelList(List<Flight> flights)
+    {
+      List<FlightModel> fmlist = new List<FlightModel>();
+      foreach (var flight in flights)
+      {
+        fmlist.Add(FlightToModel(flight));
+      }
+
+      return fmlist;
+    }
   }
 }

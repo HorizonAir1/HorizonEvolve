@@ -57,7 +57,6 @@ namespace LogicService.Controllers
               return createTask.Result;
             }
           }
-
           Task<HttpResponseMessage> createBooking = _dah.PostTask<BookingModel>("Booking/", booking);
           _repo.CreateBooking(booking, createBooking);
           createBooking.Wait();
