@@ -9,7 +9,7 @@ using DatabaseAPI.Models;
 
 namespace DatabaseAPI.Controllers
 {
-  [Authorize]
+  [AllowAnonymous]
   public class PassengerController : ApiController
   {
     private FacadeHelper fh = FacadeHelper.Instance;
@@ -20,21 +20,21 @@ namespace DatabaseAPI.Controllers
     }
 
     // GET: api/Passenger? passengerquerystring
-    public HttpResponseMessage Get(PassengerModel Passenger)
-    {
-      try
-      {
-        var x = fh.GetPassenger(Passenger);
-        if (x != null)
-          return Request.CreateResponse<PassengerModel>(HttpStatusCode.OK, x);
-        return Request.CreateResponse<string>(HttpStatusCode.NotFound, "No such Passenger");
-      }
-      catch (Exception e)
-      {
-        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
-      }
+    //public HttpResponseMessage Get(PassengerModel Passenger)
+    //{
+    //  try
+    //  {
+    //    var x = fh.GetPassenger(Passenger);
+    //    if (x != null)
+    //      return Request.CreateResponse<PassengerModel>(HttpStatusCode.OK, x);
+    //    return Request.CreateResponse<string>(HttpStatusCode.NotFound, "No such Passenger");
+    //  }
+    //  catch (Exception e)
+    //  {
+    //    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
+    //  }
 
-    }
+    //}
 
     // POST: api/Passenger
     public HttpResponseMessage Post(PassengerModel passenger)
