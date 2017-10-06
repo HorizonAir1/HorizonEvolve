@@ -37,11 +37,10 @@ namespace LogicService.Controllers
     // POST: api/Flight
     public HttpResponseMessage Post(FlightModel flight)
     {//create a flight 
-      //check logic to see if flight can be made (not necessary, unless two shuttles cannot launch at the same time)
-
-      //create flight in both repo and database (same time)
-
-      throw new NotImplementedException();
+      if (_dah.Login())
+      {
+        _repo.AddFlight()
+      }
     }
 
     // PUT: api/Flight/5

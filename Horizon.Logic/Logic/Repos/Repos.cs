@@ -174,22 +174,21 @@ namespace Logic.Repos
     #endregion
 
     #region AdminCode
-    public Flight AddFlight(TimeSpan arrivalTime, DateTime arrivalDate, TimeSpan departureTime, DateTime departureDate, string destination, string departure, int aircraftId)
+    public void AddFlight<T>(Flight f, Task<T> task)
     {
+      task.Start();
       Flight flight = new Flight()
       {
-        ArrivalTime = arrivalTime,
-        ArrivalDate = arrivalDate,
-        DepartTime = departureTime,
-        DepartDate = departureDate,
-        Destination = destination,
-        Departure = departure,
-        AircraftId = aircraftId
+        ArrivalTime = f.ArrivalTime,
+        ArrivalDate = f.ArrivalDate,
+        DepartTime = f.DepartTime,
+        DepartDate = f.DepartDate,
+        Destination = f.Destination,
+        Departure = f.Departure,
+        AircraftId = f.AircraftId
       };
 
       _flights.Add(flight);
-
-      return flight;
     }
 
     public void CreatePassenger<T>(Passenger p, Task<T> task)
