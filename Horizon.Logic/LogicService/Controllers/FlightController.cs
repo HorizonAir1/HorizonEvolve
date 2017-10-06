@@ -32,6 +32,11 @@ namespace LogicService.Controllers
       throw new NotImplementedException();
     }
 
+    public HttpResponseMessage Get(Search search)
+    {
+      return Request.CreateResponse<Search>(HttpStatusCode.OK, search);
+    }
+
     // POST: api/Flight
     public HttpResponseMessage Post(FlightModel flight)
     {//create a flight 
