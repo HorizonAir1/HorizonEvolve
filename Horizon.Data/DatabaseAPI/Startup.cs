@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DataService
+namespace DatabaseAPI
 {
   public class Startup
   {

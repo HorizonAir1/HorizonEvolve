@@ -93,5 +93,11 @@ namespace Database.Models
 
             }
         }
+
+        public static IEnumerable<DataAccess.Passenger> GetAllPassengers()
+        {
+            var db = new HorizonData();
+            return db.Passengers;
+        }
     }
 }

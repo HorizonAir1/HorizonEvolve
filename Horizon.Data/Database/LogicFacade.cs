@@ -35,6 +35,10 @@ namespace Database
             return Models.Passenger.GetPassenger(mail);
             
         }
+        public IEnumerable<DataAccess.Passenger> GetAllPassengers()
+        {
+            return Models.Passenger.GetAllPassengers();
+        }
         //FLIGHTS  
         public DataAccess.Flight GetFlight(int flightid)
         {
