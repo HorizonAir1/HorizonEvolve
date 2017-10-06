@@ -19,13 +19,13 @@ namespace DatabaseAPI.Controllers
       return Request.CreateResponse<List<BookingModel>>(HttpStatusCode.OK, x);
     }
 
-    public HttpResponseMessage Get(BookingModel book)
-    {
-            var x = fh.GetBooking(book);
-            if (x != null)
-                return Request.CreateResponse<BookingModel>(HttpStatusCode.OK, x);
-            return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "get fail");
-    }
+    //public HttpResponseMessage Get(BookingModel book)
+    //{
+    //        var x = fh.GetBooking(book);
+    //        if (x != null)
+    //            return Request.CreateResponse<BookingModel>(HttpStatusCode.OK, x);
+    //        return Request.CreateResponse<string>(HttpStatusCode.BadRequest, "get fail");
+    //}
 
    
 
