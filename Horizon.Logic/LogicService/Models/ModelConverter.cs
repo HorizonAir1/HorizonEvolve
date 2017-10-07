@@ -36,6 +36,16 @@ namespace LogicService.Models
       };
     }
 
+    public static List<Passenger> ModelToPassList(List<PassengerModel> pmlist)
+    {
+      List<Passenger> plist = new List<Passenger>();
+      foreach (var pm in pmlist)
+      {
+        plist.Add(ModelToPass(pm));
+      }
+      return plist;
+    }
+
     public static BookingModel BookToModel(Booking book)
     {
       return new BookingModel
@@ -47,6 +57,19 @@ namespace LogicService.Models
         seat_number = book.SeatNumber,
         baggage_num = book.BaggageNumber,
         status_id = book.StatusId
+      };
+    }
+    public static Booking ModelToBook(BookingModel book)
+    {
+      return new Booking
+      {
+        Passenger = ModelToPass(book.passenger),
+        Id = book.booking_id,
+        FlightId = book.flight_id,
+        SeatClassId = book.seatclass_id,
+        SeatNumber = book.seat_number,
+        BaggageNumber= book.baggage_num,
+        StatusId = book.status_id
       };
     }
 
@@ -67,6 +90,17 @@ namespace LogicService.Models
         PassengerId = passengerId
       };
     }
+
+    public static List<Booking> ModelToBookList(List<BookingModel> bmlist)
+    {
+      List<Booking> blist = new List<Booking>();
+      foreach (var bm in bmlist)
+      {
+        blist.Add(ModelToBook(bm));
+      }
+      return blist;
+    }
+    
 
     public static Flight ModelToFlight(FlightModel flight)
     {
@@ -107,6 +141,16 @@ namespace LogicService.Models
       }
 
       return fmlist;
+    }
+
+    public static List<Flight> ModelToFlightList(List<FlightModel> fmlist)
+    {
+      List<Flight> flist = new List<Flight>();
+      foreach (var fm in fmlist)
+      {
+        flist.Add(ModelToFlight(fm));
+      }
+      return flist;
     }
   }
 }

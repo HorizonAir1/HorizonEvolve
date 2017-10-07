@@ -23,7 +23,19 @@ namespace LogicService.Controllers
     public BookingController() : base()
     {
       _dah = DataAPIHandler.Instance;
-      _repo = Repos.Instance(_dah.GetTask("Passenger/"), _dah.GetTask("Booking/"), _dah.GetTask("Flight/"));
+      if (Repos.Instance() == null)
+      {
+        _dah.Login();
+        var p = _dah.GetResponse("Passenger/").Content.ReadAsStringAsync().Result;
+        var f = _dah.GetResponse("Flight/").Content.ReadAsStringAsync().Result;
+        var b = _dah.GetResponse("Booking/").Content.ReadAsStringAsync().Result;
+        var passengers = ModelConverter.ModelToPassList(JsonConvert.DeserializeObject<List<PassengerModel>>(p));
+        var flights = ModelConverter.ModelToFlightList(JsonConvert.DeserializeObject<List<FlightModel>>(f));
+        var bookings = ModelConverter.ModelToBookList(JsonConvert.DeserializeObject<List<BookingModel>>(b));
+        _repo = Repos.Instance(passengers, flights, bookings);
+        _dah.Logout();
+      }
+      _repo = Repos.Instance();
     }
 
     public HttpResponseMessage Get()
