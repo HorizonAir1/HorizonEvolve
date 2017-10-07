@@ -96,8 +96,15 @@ namespace Database.Models
 
         public static IEnumerable<DataAccess.Passenger> GetAllPassengers()
         {
-            var db = new HorizonData();
-            return db.Passengers;
+          List<DataAccess.Passenger> plist = new List<DataAccess.Passenger>();
+          using (var db = new HorizonData())
+          {
+            foreach (var item in db.Passengers)
+            {
+                plist.Add(item);
+            }
+          }
+          return plist;
         }
     }
 }

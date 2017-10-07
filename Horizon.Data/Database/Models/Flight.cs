@@ -144,10 +144,16 @@ namespace Database.Models
 
     public static IEnumerable<DataAccess.Flight> GetAllFlights()
     {
+      List<DataAccess.Flight> flight = new List<DataAccess.Flight>();
       using (var db = new HorizonData())
       {
-        return db.Flights;
+        foreach(var item in db.Flights)
+        {
+          flight.Add(item);
+        }
       }
+
+      return flight;
     }
   }
 }
