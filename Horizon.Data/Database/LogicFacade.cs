@@ -67,6 +67,11 @@ namespace Database
         {
             return Models.Flight.updateFlight(flightS,arrtime, arrdate, deptime, depdate, dest, dep, craftid);
         }
+
+        public IEnumerable<DataAccess.Flight> GetAllFlights()
+        {
+            return Models.Flight.GetAllFlights();
+        }
         // CHECK
         public List<DataAccess.Flight> GetAllFlights(string startLoc, string destLoc, DateTime startSearch, DateTime endSearch, int numPassengers)
         {

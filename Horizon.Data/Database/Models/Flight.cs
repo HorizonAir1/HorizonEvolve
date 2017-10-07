@@ -141,6 +141,14 @@ namespace Database.Models
         return false;
       return true;
     }
+
+    public static IEnumerable<DataAccess.Flight> GetAllFlights()
+    {
+      using (var db = new HorizonData())
+      {
+        return db.Flights;
+      }
+    }
   }
 }
 

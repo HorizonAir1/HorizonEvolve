@@ -92,11 +92,6 @@ namespace DatabaseAPI
       return lf.GetAllFlightDestinations();
     }
 
-    public List<DataAccess.Flight> GetAllFlights()
-    {
-      throw new NotImplementedException();
-    }
-
     public List<DataAccess.Flight> getAllflights(Search s)
     {
       return lf.GetAllFlights(s.StartLoc, s.EndLoc, s.StartTime, s.EndTime, s.numPass);
@@ -160,6 +155,26 @@ namespace DatabaseAPI
         });
       }
       return passlist;
+    }
+
+    public List<FlightModel> GetAllFlights()
+    {
+      List<FlightModel> modellist = new List<FlightModel>();
+      foreach (var f in lf.GetAllFlights())
+      {
+        modellist.Add(new FlightModel()
+        {
+          flight_id = f.flight_id,
+          arrival_time = f.arrival_time,
+          arrival_date = f.arrival_date,
+          dep_time = f.depart_time,
+          dep_date = f.depart_date,
+          destination = f.destination,
+          departure = f.departure,
+          aircraft_id = f.aircraft_id
+        });
+      }
+      return modellist;
     }
   }
 }
