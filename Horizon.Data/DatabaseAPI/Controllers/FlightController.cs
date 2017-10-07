@@ -15,7 +15,7 @@ namespace DatabaseAPI.Controllers
     // GET api/values
     public HttpResponseMessage Get()
     {
-      return Request.CreateResponse<List<DataAccess.Flight>>(HttpStatusCode.OK, fh.GetAllFlights());
+      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, fh.GetAllFlights());
     }
 
     // GET api/values/5
