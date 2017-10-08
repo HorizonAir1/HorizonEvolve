@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{84A4FEE3-443A-45FF-87A4-292286EF4AA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIService", "UIService\UIService.csproj", "{1CE247FB-47BB-4195-9BFA-ACA71ABA622C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{84A4FEE3-443A-45FF-87A4-292286EF4AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84A4FEE3-443A-45FF-87A4-292286EF4AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84A4FEE3-443A-45FF-87A4-292286EF4AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE247FB-47BB-4195-9BFA-ACA71ABA622C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE247FB-47BB-4195-9BFA-ACA71ABA622C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE247FB-47BB-4195-9BFA-ACA71ABA622C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE247FB-47BB-4195-9BFA-ACA71ABA622C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
