@@ -146,7 +146,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aircraft.cs" />
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\BookingStatus.cs" />
+    <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\SeatClass.cs" />
+    <Compile Include="Models\SeatingChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

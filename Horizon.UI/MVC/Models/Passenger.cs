@@ -16,6 +16,6 @@ namespace MVC.Models
         public string TelephoneNumber { get; set; }
         public string Email { get; set; }
 
-
+        public List<Booking> Bookings { get; set; }
     }
 }
