@@ -53,26 +53,10 @@
     <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\Seating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AircraftRepository.cs" />
-    <Compile Include="Repositories\BookingRepository.cs" />
-    <Compile Include="Repositories\BookingStatusRepository.cs" />
-    <Compile Include="Repositories\FlightRepository.cs" />
-    <Compile Include="Repositories\PassengerRepository.cs" />
-    <Compile Include="Repositories\PaymentRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\SeatClassRepository.cs" />
-    <Compile Include="Repositories\SeatingChartRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Horizon.Logic\Logic\Logic.csproj">
-      <Project>{e23855af-1891-4569-b142-8cec8bf7df1b}</Project>
-      <Name>Logic</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
