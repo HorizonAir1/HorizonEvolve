@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Horizon | Interplanetary Travel </title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+    <link rel="stylesheet" href="./jspm_packages/github/angular/bower-material@master/angular-material.css" />
+    <link rel="stylesheet" href="./assets/app.css" />
+</head>
+
+<body ng-cloak layout="column" ng-controller="AppController as app">
+
+
+    <h1 class="label">HORIZON</h1>
+    <div class="former">
+        <h2 class="subtext">The First Interplantary Travel Service</h2>
+        <div class="first">
+            <h2 class="half">DEPARTURE</h2>
+            <div flex-gt-xs>
+                <md-datepicker ng-model="ctrl.myDate" md-current-view="year" md-placeholder="Enter date"></md-datepicker>
+
+            </div>
+            <h2 class="half space">ARRIVAL</h2>
+            <div flex-gt-xs>
+                <md-datepicker ng-model="ctrl.myDate" md-current-view="year" md-placeholder="Enter date"></md-datepicker>
+
+            </div>
+
+            <md-button md-no-ink ng-click="go('')" class="md-primary">FIND FLIGHTS</md-button>
+        </div>
+    </div>
+
+
+
+    <div id="container"></div>
+
+
+
+    <script src="./jspm_packages/system.js" type="text/javascript"></script>
+    <script src="config.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        System
+            .import('src/boot/boot')
+            .catch(console.error.bind(console)); // make sure any errors print to console
+
+    </script>
+    <script src="three.js/build/three.js"></script>
+
+    <script src="three.js/examples/js/renderers/Projector.js"></script>
+    <script src="three.js/examples/js/renderers/CanvasRenderer.js"></script>
+    <script src="src/earth.js"></script>
+
+
+</body>
+
+</html>

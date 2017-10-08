@@ -1,0 +1,54 @@
+﻿body {
+}
+.label {
+    position: absolute;
+    color: #fff;
+    align-self: flex-start;
+    padding: 3% 0 0 3%;
+    font-family: 'Roboto',sans-serif;
+    font-size: 5em;
+    /*    text-shadow: 5px 0px 5px #71e0e8;*/
+    letter-spacing: 4px;
+}
+
+.former {
+    position: absolute;
+    color: white;
+    align-self: flex-start;
+    padding: 10% 0 0 3%;
+    font-family: 'Roboto',sans-serif;
+    font-size: 2em;
+}
+
+#container {
+    height: 100vh;
+    background-image: url(../three.js/examples/textures/sk.jpg)
+}
+
+.head {
+    display: flex;
+}
+
+
+.first {
+    background-color: white;
+    border-radius: 10px;
+    color: Black;
+    padding: 1%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 450px;
+}
+
+.half {
+    flex-basis: 100%;
+    margin: 0;
+}
+
+.pagetwo {
+    display: flex;
+}
+
+.space {
+    padding-top: 2%;
+}

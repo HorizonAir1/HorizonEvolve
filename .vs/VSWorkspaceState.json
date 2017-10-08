@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\HorizonUI",
+    "\\HorizonUI\\App_Data",
+    "\\HorizonUI\\SPA",
+    "\\HorizonUI\\SPA\\Style",
+    "\\HorizonUI\\SPA\\Views",
+    "\\HorizonUI\\Views",
+    "\\HorizonUI\\Views\\Home"
+  ],
+  "SelectedNode": "\\HorizonUI\\Views\\Home\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}
