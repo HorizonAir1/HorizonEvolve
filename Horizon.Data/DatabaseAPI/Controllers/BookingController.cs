@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace DatabaseAPI.Controllers
 {
-  [Authorize]
+  [AllowAnonymous]
   public class BookingController : ApiController
   {
     private FacadeHelper fh = FacadeHelper.Instance;
