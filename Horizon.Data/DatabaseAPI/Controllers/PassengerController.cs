@@ -9,7 +9,7 @@ using DatabaseAPI.Models;
 
 namespace DatabaseAPI.Controllers
 {
-  [Authorize]
+  [AllowAnonymous]
   public class PassengerController : ApiController
   {
     private FacadeHelper fh = FacadeHelper.Instance;
