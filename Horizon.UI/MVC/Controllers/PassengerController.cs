@@ -19,8 +19,9 @@ namespace MVC.Controllers
         }
 
         // GET: Passenger/Details/5
-        public ActionResult Details(int id)
+        public ActionResult GetFlightDetails(int id)
         {
+
             return View();
         }
 
