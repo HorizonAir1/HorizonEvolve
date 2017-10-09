@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace LogicService.Controllers
 {
+  [AllowAnonymous]
   public class FlightController : ApiController
   {
     private DataAPIHandler _dah;
