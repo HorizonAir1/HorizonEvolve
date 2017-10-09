@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVC.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,9 @@ namespace MVC.Controllers
         // GET: Passenger
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Passenger> passengers = new List<Passenger>();
+
+            return View(passengers);
         }
 
         // GET: Passenger/Details/5
@@ -21,14 +25,14 @@ namespace MVC.Controllers
         }
 
         // GET: Passenger/Create
-        public ActionResult Create()
+        public ActionResult CreatePassenger()
         {
             return View();
         }
 
         // POST: Passenger/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreatePassenger(FormCollection collection)
         {
             try
             {
