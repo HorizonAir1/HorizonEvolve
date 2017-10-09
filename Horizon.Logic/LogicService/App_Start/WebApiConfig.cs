@@ -20,7 +20,7 @@ namespace LogicService
           name: "DefaultApi",
           routeTemplate: "LogicService/{controller}/{id}",
           defaults: new { id = RouteParameter.Optional }
-      );
+      );    
     }
   }
 }

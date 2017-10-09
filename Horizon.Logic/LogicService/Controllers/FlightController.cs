@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace LogicService.Controllers
 {
+  [AllowAnonymous]
   public class FlightController : ApiController
   {
     private DataAPIHandler _dah;
@@ -41,12 +42,13 @@ namespace LogicService.Controllers
       return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, ModelConverter.FlightToModelList(_repo.GetAllFlights()));
     }
 
-    //public HttpResponseMessage GetSearch(Search search)
-    //{//get all flights within search
-    //  return Request.CreateResponse<Search>(HttpStatusCode.OK, search);
-    //  List<Flight> flights = _repo.GetAvailableFlightsWithDuration(search.StartLoc, search.EndLoc, search.StartTime, search.EndTime);
-    //  return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, ModelConverter.FlightToModelList(flights));
-    //}
+    [Route("logicservice/getsearch/{search}")]
+    public HttpResponseMessage GetSearch(Search search)
+    {//get all flights within search
+      return Request.CreateResponse<Search>(HttpStatusCode.OK, search);
+      List<Flight> flights = _repo.GetAvailableFlightsWithDuration(search.StartLoc, search.EndLoc, search.StartTime, search.EndTime);
+      return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, ModelConverter.FlightToModelList(flights));
+    }
 
 
     // POST: api/Flight
