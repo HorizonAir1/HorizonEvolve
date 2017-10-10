@@ -42,6 +42,7 @@ App.config(configFunction);
 
 App.service('FlightService', function() {
   var booking = [];
+  
 
   var addBooking = function(newObj) {
       booking.push(newObj);

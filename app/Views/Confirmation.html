@@ -1,51 +1,85 @@
-﻿
-<div class="row center-align">
-    <div class="col s12  center-align">
-        <div class="card light-blue darken-1 center-align">
-            <div class="card-content white-text ">
-                <span class="card-title">PASSENGER </span>
-                <p>
-                  {{book}}
-                </p>
-            </div>
-        </div>
+<div class="row center-align fix">
+  <div class="col s12  center-align">
+    <div class="card light-blue darken-1 center-align">
+      <div class="card-content white-text ">
+        <span class="card-title">PASSENGER </span>
+        <p>
+          {{book[4]}}
+        </p>
+      </div>
     </div>
+  </div>
 </div>
-<div class="row center-align">
-    <div class="col s12  center-align">
-        <div class="card light-blue darken-1 center-align">
-            <div class="card-content white-text center-align">
-                <span class="card-title">E-TICKET RECIEPT </span>
-                <p>
-                  {{book}}
-                </p>
-            </div>
-        </div>
+<div class="row center-align fix">
+  <div class="col s12  center-align">
+    <div class="card light-blue darken-1 center-align">
+      <div class="card-content white-text center-align">
+        <span class="card-title">E-TICKET RECIEPT </span>
+
+        <table>
+          <thead>
+            <tr>
+              <th>DEPARTURE</th>
+              <th>ARRIVAL</th>
+
+
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td> {{book[2]}}</td>
+              <td>{{book[3]}}
+
+            </tr>
+
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>E-TICKET NUMBER</th>
+
+
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td> {{rand}}</td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
     </div>
+  </div>
 </div>
-<div class="row center-align">
-    <div class="col s12  center-align">
-        <div class="card light-blue darken-1 center-align">
-            <div class="card-content white-text center-align">
-                <span class="card-title">FARE INFORMATION </span>
-                <table>
-<thead>
-<tr>
-    <th>TRIP</th>
-    <th>PRICE</th>
+<div class="row center-align fix">
+  <div class="col s12  center-align">
+    <div class="card light-blue darken-1 center-align">
+      <div class="card-content white-text center-align">
+        <span class="card-title">FARE INFORMATION </span>
+        <table>
+          <thead>
+            <tr>
+              <th>TRIP</th>
+              <th>PRICE</th>
 
-</tr>
-</thead>
+            </tr>
+          </thead>
 
-<tbody>
-<tr>
-  <td>ROUNDTRIP</td>
-  <td>$100,000.00</td>
-</tr>
+          <tbody>
+            <tr>
+              <td>ROUNDTRIP</td>
+              <td>$100,000.00</td>
+            </tr>
 
-</tbody>
-</table>
-            </div>
-        </div>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

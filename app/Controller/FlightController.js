@@ -12,7 +12,7 @@
         });
     $scope.addtobook = function(currObj){
 
-            FlightService.addBooking(currObj);
+            FlightService.addBooking(currObj.Destination);
 
         };
 

@@ -1,5 +1,6 @@
 ﻿body {
     overflow:hidden;
+
     font-family:'Roboto',sans-serif;
     font-weight:500;
 }
@@ -37,7 +38,7 @@
 }
 
 #container {
-    height: 90vh;
+    height:92vh;
     background-image: url(sk.jpg);
     background-repeat:no-repeat;
     background-size:cover;
@@ -158,4 +159,7 @@
 .button--green:hover {
   background-color: #8bdda8;
   color: white;
+}
+.fix{
+    margin-bottom: 1% !important;
 }

@@ -11,7 +11,7 @@
         });
     $scope.addtobook = function(currObj){
 
-        FlightService.addBooking(currObj);
+        FlightService.addBooking(currObj.Departure);
 
     };
 
@@ -26,3 +26,4 @@ TableController.$inject = ['$scope','$http','FlightService'];
 // app.controller('CartController', function($scope, productService) {
 //     $scope.products = productService.getProducts();
 // });
+// <td>{{account.subscriptions[$index].expirationDate}}</td>
