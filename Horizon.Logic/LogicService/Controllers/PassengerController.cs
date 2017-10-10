@@ -37,6 +37,11 @@ namespace LogicService.Controllers
       _repo = Repos.Instance();   
     }
 
+    public HttpResponseMessage Get()
+    {
+      return Request.CreateResponse<List<PassengerModel>>(HttpStatusCode.OK, ModelConverter.PassToModelList(_repo.GetAllPassengers()));
+
+    }
     // GET: api/Passenger
     public HttpResponseMessage Get(string email)
     {

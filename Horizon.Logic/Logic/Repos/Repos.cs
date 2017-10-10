@@ -333,6 +333,11 @@ namespace Logic.Repos
 
       _bookings.Add(booking);
     }
+
+    public List<Passenger> GetAllPassengers()
+    {
+      return _passengers;
+    }
     #endregion
   }
 }

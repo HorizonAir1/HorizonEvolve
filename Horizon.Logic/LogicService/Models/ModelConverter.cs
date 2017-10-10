@@ -36,6 +36,16 @@ namespace LogicService.Models
       };
     }
 
+    public static List<PassengerModel> PassToModelList(List<Passenger> plist)
+    {
+      List<PassengerModel> pmlist = new List<PassengerModel>();
+      foreach (var p in plist)
+      {
+        pmlist.Add(PassToModel(p));
+      }
+      return pmlist;
+    }
+
     public static List<Passenger> ModelToPassList(List<PassengerModel> pmlist)
     {
       List<Passenger> plist = new List<Passenger>();
