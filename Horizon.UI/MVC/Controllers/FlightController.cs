@@ -25,7 +25,7 @@ namespace MVC.Controllers
       return View(flights);
       }
 
-      return View(flights);
+      return View();
     }
 
     // GET: Flight/Create

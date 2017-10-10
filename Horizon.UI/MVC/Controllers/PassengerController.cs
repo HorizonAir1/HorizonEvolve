@@ -1,4 +1,5 @@
-﻿using MVC.Models;
+﻿using MVC.Controllers.Handler;
+using MVC.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace MVC.Controllers
 {
     public class PassengerController : Controller
     {
+        LogicAPIHandler _lah = LogicAPIHandler.Instance;
+
         // GET: Passenger
         public ActionResult Index()
         {
