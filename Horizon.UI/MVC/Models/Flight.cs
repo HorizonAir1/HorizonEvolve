@@ -5,17 +5,13 @@ namespace MVC.Models
 {
     public class Flight
     {
-        public int FlightId { get; set; }
-        public TimeSpan ArrivalTime { get; set; }
-        public DateTime ArrivalDate { get; set; }
-        public TimeSpan DepartTime { get; set; }
-        public DateTime DepartDate { get; set; }
+        public int Flight_id { get; set; }
+        public TimeSpan Arrival_time { get; set; }
+        public DateTime Arrival_date { get; set; }
+        public TimeSpan Depart_time { get; set; }
+        public DateTime Depart_date { get; set; }
         public string Destination { get; set; }
         public string Departure { get; set; }
-        public int AircraftId { get; set; }
-
-        public List<Booking> Bookings { get; set; }
-        public Aircraft Aircraft { get; set; }
-        public List<SeatingChart> SeatingCharts { get; set; }
+        public int Aircraft_id { get; set; }
     }
 }

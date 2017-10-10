@@ -53,9 +53,10 @@ namespace MVC.Controllers
     {
       //TODO: GetFlight(id);
       var res = _lah.GetResponse("Flight/" + id.ToString());
+
       if (res.IsSuccessStatusCode)
       {
-        return View();
+        return View(res);
       }
       return View();
     }

@@ -215,6 +215,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Flight\Index.cshtml" />
     <Content Include="Views\Flight\CreateFlight.cshtml" />
+    <Content Include="Views\Flight\EditFlight.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

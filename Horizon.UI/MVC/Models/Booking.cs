@@ -7,17 +7,13 @@ namespace MVC.Models
 {
     public class Booking
     {
-        public int BookingId { get; set; }
-        public int FlightId { get; set; }
-        public int SeatClassId { get; set; }
-        public int SeatNumber { get; set; }
-        public int BaggageNumber { get; set; }
-        public int StatusId { get; set; }
-
-        public Passenger Passenger { get; set; }
-        public Flight Flight { get; set; }
-        public SeatClass SeatClass { get; set; }
-        public BookingStatus Status { get; set; }
-        public Payment Payment { get; set; }
+        public int booking_id { get; set; }
+        public string passenger_email { get; set; }
+        public int flight_id { get; set; }
+        public int seatclass_id { get; set; }
+        public int seat_number { get; set; }
+        public int baggage_num { get; set; }
+        public int status_id { get; set; }
+        public Passenger passenger { get; set; }
     }
 }
