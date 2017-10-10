@@ -18,13 +18,6 @@ namespace MVC.Controllers
             return View(passengers);
         }
 
-        // GET: Passenger/Details/5
-        public ActionResult GetFlightDetails(int id)
-        {
-
-            return View();
-        }
-
         // GET: Passenger/Create
         public ActionResult CreatePassenger()
         {
@@ -33,62 +26,37 @@ namespace MVC.Controllers
 
         // POST: Passenger/Create
         [HttpPost]
-        public ActionResult CreatePassenger(FormCollection collection)
+        public ActionResult CreatePassenger(Passenger passenger)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            //TODO: CreatePassenger(passenger);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Passenger/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditPassenger(int passengerId)
         {
+            //TODO: GetPassenger(passengerId);
+
             return View();
         }
 
         // POST: Passenger/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditPassenger(int passengerId, Passenger passenger)
         {
-            try
-            {
-                // TODO: Add update logic here
+            //TODO: GetPassenger(passengerId);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Passenger/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int passengerId)
         {
+            //TODO: GetBooking(passengerId); & and RemoveBooking();
+
             return View();
         }
 
-        // POST: Passenger/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
