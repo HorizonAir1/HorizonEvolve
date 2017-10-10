@@ -1,9 +1,11 @@
 ﻿using MVC.Controllers.Handler;
 using MVC.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,8 +19,17 @@ namespace MVC.Controllers
         public ActionResult Index()
         {
             IEnumerable<Passenger> passengers = new List<Passenger>();
+            HttpResponseMessage res = _lah.GetResponse("Passenger/");
 
-            return View(passengers);
+            if (res.IsSuccessStatusCode)
+            {
+                string p = res.Content.ReadAsStringAsync().Result;
+                passengers = JsonConvert.DeserializeObject<List<Passenger>>(p);
+
+                return View(passengers);
+            }
+
+            return View();
         }
 
         // GET: Passenger/Create
@@ -32,14 +43,26 @@ namespace MVC.Controllers
         public ActionResult CreatePassenger(Passenger passenger)
         {
             //TODO: CreatePassenger(passenger);
+            HttpResponseMessage res = _lah.PostResponse("Passenger/", passenger);
 
-            return RedirectToAction("Index");
+            if (res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
 
         // GET: Passenger/Edit/5
         public ActionResult EditPassenger(int passengerId)
         {
             //TODO: GetPassenger(passengerId);
+            HttpResponseMessage res = _lah.GetResponse("Passenger/");
+
+            if (res.IsSuccessStatusCode)
+            {
+                return View(res);
+            }
 
             return View();
         }
@@ -60,6 +83,5 @@ namespace MVC.Controllers
 
             return View();
         }
-
     }
 }

@@ -17,6 +17,7 @@ namespace MVC.Controllers
     {
       IEnumerable<Flight> flights = new List<Flight>();
       var res = _lah.GetResponse("Flights/");
+
       if (res.IsSuccessStatusCode)
       {
         var f= res.Content.ReadAsStringAsync().Result;

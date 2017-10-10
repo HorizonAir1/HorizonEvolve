@@ -6,7 +6,7 @@ namespace MVC.Models
     public class Flight
     {
         public int FlightId { get; set; }
-        public TimeSpan MyProperty { get; set; }
+        public TimeSpan ArrivalTime { get; set; }
         public DateTime ArrivalDate { get; set; }
         public TimeSpan DepartTime { get; set; }
         public DateTime DepartDate { get; set; }

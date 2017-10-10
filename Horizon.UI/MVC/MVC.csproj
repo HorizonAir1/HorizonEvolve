@@ -213,12 +213,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Flight\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Booking\" />
-    <Folder Include="Views\Flight\" />
     <Folder Include="Views\Passenger\" />
   </ItemGroup>
   <ItemGroup>

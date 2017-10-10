@@ -19,10 +19,11 @@ namespace MVC.Controllers
         {
             IEnumerable<Booking> bookings = new List<Booking>();
             HttpResponseMessage res = _lah.GetResponse("Booking/");
+
             if (res.IsSuccessStatusCode)
             {
-                var f = res.Content.ReadAsStringAsync().Result;
-                bookings = JsonConvert.DeserializeObject<List<Booking>>(f);
+                string b = res.Content.ReadAsStringAsync().Result;
+                bookings = JsonConvert.DeserializeObject<List<Booking>>(b);
 
                 return View(bookings);
             }
@@ -42,6 +43,7 @@ namespace MVC.Controllers
         {
             // TODO: CreateBooking(booking)
             HttpResponseMessage res = _lah.PostResponse<Booking>("Booking/", booking);
+
             if (res.IsSuccessStatusCode)
             {
                 return RedirectToAction("Booking");
@@ -55,6 +57,7 @@ namespace MVC.Controllers
         {
             //TODO: GetBooking(id)
             HttpResponseMessage res = _lah.GetResponse("Booking/" + bookingId.ToString());
+
             if (res.IsSuccessStatusCode)
             {
                 return View(res);
