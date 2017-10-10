@@ -58,7 +58,7 @@ namespace Database.Models
 
             }
             }
-        public static bool BookPassenger(string passenger_email, int FlightId, int seatClass,  int seatNumber, int numBags)
+        public static bool BookPassenger(string passenger_email, int FlightId, int seatClass,  int seatNumber, int numBags, int status)
     {
       using (var db = new HorizonData())
       {
@@ -70,7 +70,7 @@ namespace Database.Models
           seatclass_id= seatClass,
           seat_number = seatNumber,
           baggage_num = numBags,
-          status_id= 1,
+          status_id= status,
         };
         db.Bookings.Add(addB);
         db.SaveChanges();
