@@ -44,7 +44,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult EditFlight(int flightId, Flight flight)
         {
-            Flight flightToUpdate = //TODO: GetFlight(id)
+            //Flight flightToUpdate = null; //TODO: GetFlight(id)
                 //TODO: Send to FlightAPI
 
             return RedirectToAction("Index");
@@ -56,8 +56,6 @@ namespace MVC.Controllers
             //TODO: DeleteFlight(flightId);
 
             return View();
-        }
-
         }
     }
 }

@@ -35,7 +35,7 @@ namespace MVC.Controllers
         // GET: Booking/Edit/5
         public ActionResult EditBooking(int id)
         {
-            Booking booking = //TODO: GetBooking(id)
+            Booking booking = null; //TODO: GetBooking(id)
 
             return View(booking);
         }
@@ -44,7 +44,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult EditBooking(int id, Booking booking)
         {
-                Booking bookingToUpdate = //TODO: GetBooking(id)
+            //Booking bookingToUpdate = null; //TODO: GetBooking(id)
                 //TODO: Send to bookingtoAPI
 
                 return RedirectToAction("Index");
