@@ -56,25 +56,25 @@ namespace LogicService.Controllers
       {
         if (_dah.Login())
         {
-          Passenger p = _repo.GetPassenger(booking.Email);
-          if (p!=null)
-          {
-           
-            Task<HttpResponseMessage> createTask = _dah.PostTask<PassengerModel>("Passenger/", booking.passenger);
-            _repo.CreatePassenger<HttpResponseMessage>(p, createTask);
-            createTask.Wait();
-            if (!createTask.Result.IsSuccessStatusCode)
-            {
-              _dah.Logout();
-              return createTask.Result;
-            }
-          }
+          Passenger p = _repo.GetPassenger(booking.passenger_email);
+          //if (p!=null)
+          //{
+
+          //  Task<HttpResponseMessage> createTask = _dah.PostTask<PassengerModel>("Passenger/", booking.passenger);
+          //  _repo.CreatePassenger<HttpResponseMessage>(p, createTask);
+          //  createTask.Wait();
+          //  if (!createTask.Result.IsSuccessStatusCode)
+          //  {
+          //    _dah.Logout();
+          //    return createTask.Result;
+          //  }
+          //}
           Task<HttpResponseMessage> createBooking = _dah.PostTask<BookingModel>("Booking/", booking);
-          _repo.CreateBooking(ModelConverter.ModelToBook(booking, p.Id), createBooking);
+          _repo.CreateBooking(ModelConverter.ModelToBook(booking/*, p.Id*/), createBooking);
           createBooking.Wait();
           return createBooking.Result;
         }
-        return Request.CreateResponse<string>(HttpStatusCode.InternalServerError, "Login Failed");
+        return Request.CreateResponse<string>(HttpStatusCode.Forbidden, "Login Failed");
       }
       catch (Exception e)
       {
