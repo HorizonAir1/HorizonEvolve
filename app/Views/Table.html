@@ -1,0 +1,16 @@
+﻿<div class="col s12 list center-align">
+  <div class="left-align " >
+      <ul class="collection with-header">
+          <li class="collection-header"><h4>DEPARTURES </h4> <button class="waves-effect waves-light btn-large" ng-click="clicked()">CONTINUE</button></li>
+          <li class="collection-item"   ng-repeat="flight in flights"  ng-model="flight.Departure"><div > {{flight.Departure}} : {{flight.Depart_time}} - {{flight.Depart_date}}<a href ="#!" onclick="return false;" ng-click="addtobook(flight);" class="secondary-content">SELECT</a></div></li>
+
+      </ul>
+</div>
+</div>
+
+<!--[{"Flight_id":1,"Arrival_time":"00:15:00","Arrival_date":"2022-05-25T00:00:00",
+"Depart_time":"00:00:00","Depart_date":"0001-01-01T00:00:00","Destination":"MARS-GALECRATER",
+"Departure":"TAMPA,FL,EARTH","Aircraft_id":2}]
+
+    Depart_time,Depart_date,Destination,Departure
+    -->

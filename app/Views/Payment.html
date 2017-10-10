@@ -1,0 +1,85 @@
+﻿
+    <div class="row pay">
+        <div class="col s4 ">
+            <div class="card blue-grey darken-1 pay">
+                <div class="card-content white-text">
+                    <span class="card-title">PASSENGER INFORMATION</span>
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate" ng-model="fields.first">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" ng-model="fields.last">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="number" class="validate"ng-model="fields.phone">
+          <label for="password">Phone Number</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate"ng-model="fields.email">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="address" type="text" class="validate" ng-model="fields.address">
+          <label for="email">Address</label>
+        </div>
+      </div>
+
+    </form>
+  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s4 ">
+            <div class="card blue-grey darken-1 pay">
+                <div class="card-content white-text">
+                    <span class="card-title">PAYMENT DETAILS</span>
+                    <table>
+  <thead>
+    <tr>
+        <th>TRIP</th>
+        <th>PRICE</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>ROUNDTRIP</td>
+      <td>$100,000.00</td>
+    </tr>
+
+  </tbody>
+</table>
+<iframe id="coinbase_inline_iframe_2b30a03995ec62f15bdc54e8428caa87" src="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87/inline" style="width: 360px; height: 350px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25);" allowtransparency="true" frameborder="0"></iframe>
+                </div>
+
+            </div>
+        </div>
+        <div class="col s4 ">
+            <div class="card blue-grey darken-1 pay">
+                <div class="card-content white-text">
+                    <span class="card-title">FLIGHT CONFIRMATION</span>
+                    <ul>
+                      <li>{{book}}</li>
+                    </ul>
+                </div>
+                <div class="card-action">
+                    <a href="#">Cancel</a>
+                    <a class="waves-effect waves-light btn-large" ng-click="addtobook();clicked()">CONFIRM PURCHASE</a>
+                </div>
+            </div>
+        </div>
+    </div>
