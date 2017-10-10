@@ -4,56 +4,51 @@
     ViewBag.Title = "CreateFlight";
 }
 
-<h2>Create New Flight</h2>
+<h1>Administrator</h1>
+<h3>Create New Flight</h3>
 
+<hr />
 
 <div class="row">
     <div class="col-md-4">
         <form for="CreateFlight" method="post">
             <div class="form-group">
-                <label for="Name" class="control-label">Course Name:</label>
-                <input name="Name" class="form-control input-sm" />
-                <span for="Name" class="text-danger"></span>
+                <label for="Destination" class="control-label">Destination:</label>
+                <input name="Destination" type="text" class="form-control input-sm" />
+                <span for="Destination" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <select name="ProfessorId" size="4" class="selectpicker form-control">
-                    <option value="" selected>No Professor Assigned</option>
-                    @foreach (var professor in Model)
-                    {
-                        <option value="@professor.Id">@professor.LastName, @professor.FirstName</option>
-                    }
-                </select>
+                <label for="Departure" class="control-label">Departure:</label>
+                <input type="text" name="Departure" class="form-control input-sm" />
+                <span for="Departure" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="CreditHours" class="control-label">Credit Hours:</label>
-                <input type="number" min="2" max="6" name="CreditHours" class="form-control input-sm" />
-                <span for="CreditHours" class="text-danger"></span>
+                <label for="Depart_time" class="control-label">Depart Time:</label>
+                <input type="time" name="Depart_time" class="form-control input-sm" />
+                <span for="Depart_time" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="StartDate" class="control-label">Start Date:</label>
-                <input type="date" name="StartDate" class="form-control input-sm" />
-                <span for="StartDate" class="text-danger"></span>
+                <label for="Depart_date" class="control-label">Depart Date:</label>
+                <input type="date" name="Depart_date" class="form-control input-sm" />
+                <span for="Depart_date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="EndDate" class="control-label">End Date:</label>
-                <input type="date" name="EndDate" class="form-control input-sm" />
-                <span for="EndDate" class="text-danger"></span>
+                <label for="Arrival_time" class="control-label">Arrival Time:</label>
+                <input type="time" name="Arrival_time" class="form-control input-sm" />
+                <span for="Arrival_time" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="StartTime" class="control-label">Start Time:</label>
-                <input type="time" name="StartTime" class="form-control input-sm" />
-                <span for="StartTime" class="text-danger"></span>
+                <label for="Arrival_date" class="control-label">Arrival Date:</label>
+                <input type="date" name="Arrival_date" class="form-control input-sm" />
+                <span for="Arrival_date" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label for="Length" class="control-label">Class Length</label>
-                <input type="number" min="50" max="75" name="Length" class="form-control input-sm" />
-                <span for="Length" class="text-danger"></span>
+                <label for="Aircraft_id" class="control-label">Aircraft Number</label>
+                <input type="number" name="Aircraft_id" class="form-control input-sm" />
+                <span for="Aircraft_id" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label for="StudentCapacity" class="control-label">Student Capacity</label>
-                <input type="number" min="10" max="30" name="StudentCapacity" class="form-control input-sm" />
-                <span for="StudentCapacity" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

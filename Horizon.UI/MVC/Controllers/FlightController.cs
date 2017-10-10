@@ -16,7 +16,7 @@ namespace MVC.Controllers
     public ActionResult Index()
     {
       IEnumerable<Flight> flights = new List<Flight>();
-      var res = _lah.GetResponse("Flights/");
+      var res = _lah.GetResponse("Flight/");
 
       if (res.IsSuccessStatusCode)
       {
