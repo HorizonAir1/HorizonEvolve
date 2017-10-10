@@ -1,0 +1,28 @@
+
+    <div class="col s4 former">
+        <div class="first">
+        <h1 >DEPARTURE</h1>
+        <input type="text" class="datepicker" ng-model="depdate">
+        <h1>ARRIVAL</h1>
+        <input type="text" class="datepicker" ng-model="arrdate">
+        <a class="waves-effect waves-light btn-large  cyan lighten-4" ng-click="addtobook(depdate,arrdate);clicked()">FIND FLIGHTS</a>
+        </div>
+        <script>
+        $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 15, // Creates a dropdown of 15 years to control year,
+          today: 'Today',
+          clear: 'Clear',
+          close: 'Ok',
+          closeOnSelect: false // Close upon selecting a date,
+        });
+
+        </script>
+    </div>
+
+    <!--
+    <div ng-repeat="i in values">
+       <div ng-if="i !== 0"></div>
+    </div>
+
+  ng-repeat="flight in flights"-->

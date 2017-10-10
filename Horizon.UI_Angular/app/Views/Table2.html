@@ -1,0 +1,8 @@
+﻿<div class="col s12 list center-align">
+    <div class="left-align ">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>ARRIVALS </h4> </li>
+          <li class="collection-item" ng-repeat="flight in flights"><div>{{flight.Destination}} : {{flight.Arrival_time}} - {{flight.Arrival_date}}<a ng-click="addtobook(flight); clicked()" onclick="return false;" href="#!" class="secondary-content"><i class="material-icons">SELECT</i></a></div></li>
+        </ul>
+    </div>
+</div>
