@@ -35,14 +35,18 @@ namespace MVC.Controllers
       {
         return RedirectToAction("Index");
       }
-      return RedirectToAction("Index");
+      return View();
     }
 
     // GET: Flight/Edit/5
     public ActionResult EditFlight(int id)
     {
       //TODO: GetFlight(id);
-
+      var res = _lah.GetResponse("Flight/" + id.ToString());
+      if (res.IsSuccessStatusCode)
+      {
+        return View();
+      }
       return View();
     }
 
