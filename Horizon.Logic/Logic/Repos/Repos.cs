@@ -180,7 +180,7 @@ namespace Logic.Repos
     #region AdminCode
     public void AddFlight<T>(Flight f, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Flight flight = new Flight()
       {
         ArrivalTime = f.ArrivalTime,
@@ -197,7 +197,7 @@ namespace Logic.Repos
 
     public void CreatePassenger<T>(Passenger p, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Passenger passenger = new Passenger()
       {
         FirstName = p.FirstName,
@@ -214,7 +214,7 @@ namespace Logic.Repos
 
     public void EditCustomerPersonalInfo<T>(Passenger update, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Passenger passenger = _passengers.FirstOrDefault(p => p.Email == update.Email);
 
       if (passenger != null)
@@ -244,7 +244,7 @@ namespace Logic.Repos
 
     public void UpdateFlight<T>(int flightId, Flight updateFlight, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Flight flight = _flights.FirstOrDefault(f => f.FlightId == flightId);
 
       if (flight != null)
@@ -261,7 +261,7 @@ namespace Logic.Repos
 
     public void RemoveClientFromFlight<T>(Booking book, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Booking booking = _bookings.FirstOrDefault(b => b.FlightId == book.FlightId && b.PassengerId == book.Passenger.Id);
 
       if (booking != null)
@@ -272,7 +272,7 @@ namespace Logic.Repos
 
     public void RemoveFlight<T>(int flightId, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Flight flight = _flights.FirstOrDefault(f => f.FlightId == flightId);
 
       if (flight != null)
@@ -284,7 +284,7 @@ namespace Logic.Repos
 
     public void EditCustomerBooking<T>(Booking book, Task<T> task)
     {
-      task.Start();
+
       Booking booking = _bookings.FirstOrDefault(b => b.Id == book.Id);
 
       if (booking != null)
@@ -320,7 +320,7 @@ namespace Logic.Repos
 
     public void CreateBooking<T>(Booking book, Task<T> task)
     {
-      task.Start();
+      //task.Start();
       Booking booking = new Booking()
       {
         PassengerId = book.PassengerId,

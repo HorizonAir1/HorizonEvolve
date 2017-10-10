@@ -42,6 +42,12 @@ namespace LogicService.Controllers
       return Request.CreateResponse<List<FlightModel>>(HttpStatusCode.OK, ModelConverter.FlightToModelList(_repo.GetAllFlights()));
     }
 
+    public HttpResponseMessage Get(int id)
+    {
+      //TODO: get flight by id
+      throw new NotImplementedException();
+    }
+
     [Route("logicservice/getsearch/{search}")]
     public HttpResponseMessage GetSearch(Search search)
     {//get all flights within search
