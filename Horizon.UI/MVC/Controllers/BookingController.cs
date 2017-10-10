@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,79 +12,50 @@ namespace MVC.Controllers
         // GET: Booking
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Booking> bookings = new List<Booking>();
+
+            return View(bookings);
         }
 
-        // GET: Booking/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Booking/Create
-        public ActionResult Create()
+       // GET: Booking/Create
+        public ActionResult CreateBooking()
         {
             return View();
         }
 
         // POST: Booking/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateBooking(Booking booking)
         {
-            try
-            {
-                // TODO: Add insert logic here
+                // TODO: CreateBooking(booking)
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                return RedirectToAction("Booking");
         }
 
         // GET: Booking/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditBooking(int id)
         {
-            return View();
+            Booking booking = //TODO: GetBooking(id)
+
+            return View(booking);
         }
 
         // POST: Booking/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditBooking(int id, Booking booking)
         {
-            try
-            {
-                // TODO: Add update logic here
+                Booking bookingToUpdate = //TODO: GetBooking(id)
+                //TODO: Send to bookingtoAPI
 
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: Booking/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteBooking(int bookingid)
         {
+            //TODO: DeleteBooking(bookingid);
+
             return View();
-        }
-
-        // POST: Booking/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
