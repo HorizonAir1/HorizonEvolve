@@ -1,5 +1,6 @@
 ﻿using MVC.Controllers.Handler;
 using MVC.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,14 @@ namespace MVC.Controllers
     public ActionResult Index()
     {
       IEnumerable<Flight> flights = new List<Flight>();
+      var res = _lah.GetResponse("Flights/");
+      if (res.IsSuccessStatusCode)
+      {
+        var f= res.Content.ReadAsStringAsync().Result;
+        flights = JsonConvert.DeserializeObject<List<Flight>>(f);
+        
+      return View(flights);
+      }
 
       return View(flights);
     }
