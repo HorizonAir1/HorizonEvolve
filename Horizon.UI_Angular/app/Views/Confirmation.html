@@ -3,9 +3,23 @@
     <div class="card light-blue darken-1 center-align">
       <div class="card-content white-text ">
         <span class="card-title">PASSENGER </span>
-        <p>
-          {{book[4]}}
-        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>PASSENGER INFORMATION</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>{{book[4]}}</td>
+              <td>{{book[5]}}</td>
+              <td>{{book[6]}}</td>
+              <td>{{book[7]}}</td>
+            </tr>
+
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -39,33 +53,6 @@
           <thead>
             <tr>
               <th>E-TICKET NUMBER</th>
-
-
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td> {{rand}}</td>
-
-            </tr>
-
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row center-align fix">
-  <div class="col s12  center-align">
-    <div class="card light-blue darken-1 center-align">
-      <div class="card-content white-text center-align">
-        <span class="card-title">FARE INFORMATION </span>
-        <table>
-          <thead>
-            <tr>
-              <th>TRIP</th>
               <th>PRICE</th>
 
             </tr>
@@ -73,12 +60,13 @@
 
           <tbody>
             <tr>
-              <td>ROUNDTRIP</td>
-              <td>$100,000.00</td>
+              <td> {{rand}}</td>
+              <td>$100,000.00 USD</td>
             </tr>
 
           </tbody>
         </table>
+
       </div>
     </div>
   </div>

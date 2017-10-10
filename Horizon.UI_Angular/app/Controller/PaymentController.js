@@ -1,4 +1,4 @@
-﻿var PaymentController = function ($scope,$http,FlightService) {
+var PaymentController = function ($scope,$http,FlightService) {
     $scope.clicked = function () {
         window.location = "#/confirmation";
     }
@@ -6,25 +6,40 @@
 
     $scope.addtobook = function(){
 
-        FlightService.addBooking($scope.fields);
-
+        FlightService.addBooking($scope.fields.first);
+        FlightService.addBooking($scope.fields.last);
+        FlightService.addBooking($scope.fields.phone);
+        FlightService.addBooking($scope.fields.email);
     };
-    // $http({
-    //          url: 'http://ec2-18-221-5-183.us-east-2.compute.amazonaws.com/logic/logicservice/flight',
-    //          method: "POST",
-    //          data: postData,
-    //          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    //      }).success(function (data, status, headers, config) {
-    //              $scope.book = data; // assign  $scope.persons here as promise is resolved here
-    //          }).error(function (data, status, headers, config) {
-    //              $scope.status = status;
-    //          });
+
+    $scope.sendPost = function() {
+      var jbook = $.param({
+            json: JSON.stringify({
+                 passenger_email:"KIM@KIM.com",
+                 flight_id:1,
+                 seatclass_id:1,
+                 seat_number:20,
+                 baggage_num:2,
+                 status_id:4
+             })
+          });
+      console.log(jbook)
+      $http.post('http://ec2-18-221-5-183.us-east-2.compute.amazonaws.com/logic/logicservice/booking').success(function(jbook, status) {
+          console.log("WORKS");
+      }).error(function (data, status) {
+                    $scope.status = status;
+                });
+  }
+
+
 
 }
 
 PaymentController.$inject = ['$scope','$http','FlightService'];
-// $scope.test = "Das ist ein Test";
-//     $scope.groups = [{id: 142, name: 'Foo'},{id: 143, name: 'Bar'}, {id: 144, name: 'Bas'}];
-//
-//     $scope.contact = {name: 'Bob', groups: [{id: 143}]};
-//     $scope.contact = {name: 'Bob', groups: $scope.groups[1]};
+//[booking_id] [int] IDENTITY(1,1) NOT NULL,
+	// [passenger_id] [int] NOT NULL,
+	// [flight_id] [int] NOT NULL,
+	// [seatclass_id] [int] NOT NULL,
+	// [seat_number] [int] NOT NULL,
+	// [baggage_num] [int] NOT NULL,
+	// [status_id] [int] NOT NULL,
