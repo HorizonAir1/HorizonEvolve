@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,79 +12,52 @@ namespace MVC.Controllers
         // GET: Flight
         public ActionResult Index()
         {
-            return View();
-        }
+            IEnumerable<Flight> flights = new List<Flight>();
 
-        // GET: Flight/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(flights);
         }
 
         // GET: Flight/Create
-        public ActionResult Create()
+        public ActionResult CreateFlight()
         {
             return View();
         }
 
         // POST: Flight/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateFlight(Flight flight)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            //TODO: CreateFlight(flight);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Flight/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditFlight(int id)
         {
+            //TODO: GetFlight(id);
+
             return View();
         }
 
         // POST: Flight/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditFlight(int flightId, Flight flight)
         {
-            try
-            {
-                // TODO: Add update logic here
+            Flight flightToUpdate = //TODO: GetFlight(id)
+                //TODO: Send to FlightAPI
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Flight/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteFlight(int flightId)
         {
+            //TODO: DeleteFlight(flightId);
+
             return View();
         }
 
-        // POST: Flight/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
