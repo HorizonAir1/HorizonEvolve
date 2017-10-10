@@ -13,20 +13,27 @@
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
+          <input id="middle_name" type="text" class="validate" ng-model="fields.middle">
+          <label for="middle_name">Middle Name</label>
+        </div>
+        <div class="input-field col s6">
           <input id="last_name" type="text" class="validate" ng-model="fields.last">
           <label for="last_name">Last Name</label>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="number" class="validate"ng-model="fields.phone">
+        <div class="input-field col s6">
+          <input id="password" type="text" class="validate"ng-model="fields.phone">
           <label for="password">Phone Number</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate"ng-model="fields.email">
+          <input id="date" type="datetime" class="validate"ng-model="fields.date">
+          <label for="date">Birth Date</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="text" class="validate"ng-model="fields.email">
           <label for="email">Email</label>
         </div>
       </div>
