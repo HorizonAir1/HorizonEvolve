@@ -71,11 +71,11 @@ namespace DatabaseAPI
     }
     public bool CreateFlight(FlightModel flight)
     {
-      return lf.CreateFlight(flight.arrival_time, flight.arrival_date, flight.dep_time, flight.dep_date, flight.destination, flight.departure, flight.aircraft_id);
+      return lf.CreateFlight(flight.arrival_time, flight.arrival_date, flight.depart_time, flight.depart_date, flight.destination, flight.departure, flight.aircraft_id);
     }
     public bool UpdateFlight(FlightModel flight)
     {
-      return lf.UpdateFlight(flight.flight_id, flight.arrival_time, flight.arrival_date, flight.dep_time, flight.dep_date, flight.destination, flight.departure, flight.aircraft_id);
+      return lf.UpdateFlight(flight.flight_id, flight.arrival_time, flight.arrival_date, flight.depart_time, flight.depart_date, flight.destination, flight.departure, flight.aircraft_id);
     }
     public bool DeleteFlight(FlightModel flight)
     {
@@ -167,8 +167,8 @@ namespace DatabaseAPI
           flight_id = f.flight_id,
           arrival_time = f.arrival_time,
           arrival_date = f.arrival_date,
-          dep_time = f.depart_time,
-          dep_date = f.depart_date,
+          depart_time = f.depart_time,
+          depart_date = f.depart_date,
           destination = f.destination,
           departure = f.departure,
           aircraft_id = f.aircraft_id
