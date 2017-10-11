@@ -21,8 +21,21 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Flight")</li>
-                    <li>@Html.ActionLink("Create Flight", "CreateFlight", "Flight")</li>
-                    <li>@Html.ActionLink("Edit Flight", "EditFlight", "Flight")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Flight<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("View Flights", "Index", "Flight")</li>
+                            <li>@Html.ActionLink("Create Flight", "CreateFlight", "Flight")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Passenger<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("View Passengers", "Index", "Passenger")</li>
+                            <li>@Html.ActionLink("Create Passenger", "CreatePassenger", "Passenger")</li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </div>
         </div>

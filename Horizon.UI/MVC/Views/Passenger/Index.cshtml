@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MVC.Models.Passenger>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Administrator</h1>
+<h3>All Passengers</h3>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Birth Date</th>
+            <th>Address</th>
+            <th>Telephone Number</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var client in Model)
+            {
+                <tr>
+                    <td>@client.Firstname</td>
+                    <td>@client.Middle</td>
+                    <td>@client.Lastname</td>
+                    <td>@client.Email</td>
+                    <td>@client.Birth_date.ToString("d")</td>
+                    <td>@client.Address</td>
+                    <td>@client.Tel_num</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" align="center">No Passengers Available</td>
+            </tr>
+        }
+    </tbody>
+</table>
