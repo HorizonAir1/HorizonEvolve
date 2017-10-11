@@ -1,0 +1,64 @@
+﻿@model MVC.Models.Passenger
+
+@{
+    ViewBag.Title = "CreatePassenger";
+}
+
+<h1>Administrator</h1>
+<h4>Create Passenger</h4>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form for="CreatePassenger" method="post">
+            <div class="form-group">
+                <label for="Firstname" class="control-label">First Name:</label>
+                <input name="Firstname" type="text" class="form-control input-sm" />
+                <span for="Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Middle" class="control-label">Middle Name:</label>
+                <input type="text" name="Middle" class="form-control input-sm" />
+                <span for="Middle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Lastname" class="control-label">Last Name:</label>
+                <input type="text" name="Lastname" class="form-control input-sm" />
+                <span for="Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Email" class="control-label">Email:</label>
+                <input type="email" name="Email" class="form-control input-sm" />
+                <span for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Birth_date" class="control-label">Birth Date:</label>
+                <input type="date" name="Birth_date" class="form-control input-sm" />
+                <span for="Birth_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="control-label">Address:</label>
+                <input type="text" name="Address" class="form-control input-sm" />
+                <span for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Tel_num" class="control-label">Telephone Number:</label>
+                <input type="number" name="Tel_num" class="form-control input-sm" />
+                <span for="Tel_num" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create Passenger" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="/Passenger/Index/">Back to List</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

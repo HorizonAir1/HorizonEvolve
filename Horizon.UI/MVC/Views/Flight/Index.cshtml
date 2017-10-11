@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MVC.Models.Flight>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Administrator</h1>
+<h3>All Flights</h3>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Departure</th>
+            <th>ArrivalTime</th>
+            <th>ArrivalDate</th>
+            <th>DepartTime</th>
+            <th>DepartDate</th>
+            <th>AircraftNumber</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var flight in Model)
+            {
+                <tr>
+                    <td>@flight.Destination</td>
+                    <td>@flight.Departure</td>
+                    <td>@flight.Arrival_time</td>
+                    <td>@flight.Arrival_date.ToString("d")</td>
+                    <td>@flight.Depart_time</td>
+                    <td>@flight.Depart_date.ToString("d")</td>
+                    <td>@flight.Aircraft_id</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" align="center">No Flights Available</td>
+            </tr>
+        }
+    </tbody>
+</table>
