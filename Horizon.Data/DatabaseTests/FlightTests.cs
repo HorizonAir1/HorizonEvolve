@@ -20,7 +20,7 @@ namespace Horizon.Logic.Tests
       {
         initcount = db.Bookings.Count();
       }
-       Database.Models.Flight.BookPassenger("mail", 1, 1, 1, 1);
+       //Database.Models.Flight.BookPassenger("mail", 1, 1, 1, 1);
 
       int aftercount = 0;
       using (var db = new HorizonData())

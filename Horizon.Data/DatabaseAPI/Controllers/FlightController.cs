@@ -39,7 +39,7 @@ namespace DatabaseAPI.Controllers
     }
 
     // PUT api/values/5
-    public HttpResponseMessage Put(int id, [FromBody]FlightModel flight,BookingModel book)
+    public HttpResponseMessage Put([FromBody]FlightModel flight,BookingModel book)
     {
             var x = fh.updateBook(flight,book);
             if (x == true)

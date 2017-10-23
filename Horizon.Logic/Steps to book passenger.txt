@@ -1,0 +1,26 @@
+1) UI send request to LOGIC to book passenger 
+2) LOGIC recieved request to book passenger
+
+Logic verifies passenger
+3) LOGIC to make a request to DATA to get all passenger
+4) DATA recieves request for all passengers
+5) DATA sends all passengers to LOGIC
+6) LOGIC using the the response of all passengers from DATA checks if the passenger making request is new
+
+IF Passenger is new
+7) LOGIC to send request to DATA to create new passenger
+8) DATA receives request to create new passenger
+9) DATA creates new passenger
+10) DATA return success status in response to LOGIC for creating passenger
+11) LOGIC makes request to DATA to create new booking
+12) DATA receives request to create new booking
+13) DATA create news booking
+14) DATA send success status in response to LOGIC for creating new booking
+15) LOGIC sends success status in response to UI for booking passenger
+
+IF Passenger exists
+7) LOGIC makes request to DATA to create new booking
+8) DATA receives request to create new booking
+9) DATA create news booking
+10) DATA send success status in response to LOGIC for creating new booking
+11) LOGIC sends success status in response to UI for booking passenger
