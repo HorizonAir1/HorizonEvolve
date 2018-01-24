@@ -27,9 +27,9 @@
 				scene.add( group );
 
 				// earth
-
+// HorizonEvolve/Horizon.UI_Angular/app/three.js/examples/textures/planets/earth_lights_2048.png
 				var loader = new THREE.TextureLoader();
-				loader.load( '../horizonevolved/three.js/examples/textures/planets/earth_lights_2048.png', function ( texture ) {
+				loader.load( 'three.js/examples/textures/planets/earth_lights_2048.png', function ( texture ) {
 
 					var geometry = new THREE.SphereGeometry( 200, 20, 20 );
 
